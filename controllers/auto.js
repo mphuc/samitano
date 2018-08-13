@@ -75,7 +75,7 @@ var update_balace = function(name , new_ast_balance,user_id,callback){
 	var obj = null;
 	if (name === 'BTC') obj =  { 'balance.bitcoin_wallet.available': parseFloat(new_ast_balance) }
 	if (name === 'BTG') obj =  {'balance.bitcoingold_wallet.available' : parseFloat(new_ast_balance)};
-	if (name === 'STC') obj = {'balance.coin_wallet.available': parseFloat(new_ast_balance)};
+	if (name === 'STC') obj = {'balance.stc_wallet.available': parseFloat(new_ast_balance)};
 	User.update({ _id :user_id }, { $set : obj }, function(err, UsersUpdate){
 		err ? callback(false) : callback(true);
 	});
@@ -87,7 +87,7 @@ var get_balance =function(name,user_id,callback){
 		(!err && data)? (
 			name === 'BTC' && callback(data.balance.bitcoin_wallet.available),
 			name === 'BTG' && callback(data.balance.bitcoingold_wallet.available),
-			name === 'STC' && callback(data.balance.coin_wallet.available)
+			name === 'STC' && callback(data.balance.stc_wallet.available)
 		) : callback (balance) 
 	})
 }
