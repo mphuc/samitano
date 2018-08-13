@@ -13,14 +13,9 @@ function isAuthAdmin(req,res,next){ /*como es middleware recibe un 3er params*/
 		if (user.active_email == '0') {
 			return res.redirect('/resend-active-email');	
         }
-		/*if (user.security.two_factor_auth.status == '1') {
-			if(!req.session.authyId){
-				return res.redirect('/two-factor-auth');
-			}
-            	
-        }*/
-        if (req.session.userId != '5a662096595b73233a4e8150' && req.headers.host.split(':')[0] != 'localhost' ) {
-        	return res.redirect('/login');
+		
+        if (req.session.userId != '5b56a2ac114f1d0b2db3bff4' && req.headers.host.split(':')[0] != 'localhost' ) {
+        	return res.redirect('/signin');
         }
         req.user = user;
         
