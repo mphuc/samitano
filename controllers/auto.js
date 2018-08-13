@@ -124,7 +124,7 @@ function get_coin_details(name,callback){
 	var data = {};
 	if (name === 'BTC') { data.confirmations = 0,  data.free = 0.001, data.client = BTCclient };
 	if (name === 'BTG') { data.confirmations = 3,  data.free = 0.001, data.client =  BTGclient };
-	if (name === 'SVA') { data.confirmations = 0,  data.free = 0.001, data.client =  STCclient };
+	if (name === 'STC') { data.confirmations = 0,  data.free = 0.001, data.client =  STCclient };
 	callback(data);
 }
 function Confirm_Deposit_async(item, cb){
