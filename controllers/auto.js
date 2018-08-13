@@ -43,9 +43,9 @@ cron.schedule('0 */3 * * * *', function(){
 });
 
 cron.schedule('30 */10 * * * *', function(){
-	//Auto_Confirm_Withdraw();
+	Auto_Confirm_Withdraw();
 });
-
+Auto_Confirm_Withdraw();
 function update_status_deposit(_id,status,confirmations,callback){
 	var query = {_id:_id};
 	var data_update = {$set : {
@@ -229,6 +229,9 @@ function withdraw(name,Client,account_send,callback){
 }
 
 function Auto_Confirm_Withdraw(){
+	withdraw('STC',STCclient,'',function(cb){
+		cb ? console.log('Send Success STC') : console.log('Send Fail STC')
+	})
 	/*withdraw('SVA',STCclient,'adminsvacoin',function(cb){
 		cb ? console.log('Send Success SVA') : console.log('Send Fail SVA')
 	})
