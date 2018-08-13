@@ -33,7 +33,7 @@
                               <th>Email</th>
                               
                               <th>Amount COIN</th>
-                              <th>Amount BTC</th>
+                              <th>Amount VND</th>
                               
                               <th class="disabled-sorting text-right">Actions</th>
                            </tr>
@@ -45,8 +45,8 @@
                               <td>{{this.displayName}}</td>
                               <td>{{this.email}}</td>
                               
-                              <td>{{satoshi this.balance.coin_wallet.available}}</td>
-                              <td>{{satoshi this.balance.bitcoin_wallet.available}}</td>
+                              <td>{{satoshi this.balance.stc_wallet.available}}</td>
+                              <td>{{satoshi this.balance.vnd_wallet.available}}</td>
                               
                               <td class="text-right">
                                  <!-- <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="ti-heart"></i></a> --> <a style="    background: #012a54;" href="edit/customer/{{this._id}}" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil-alt"></i></a> <!-- <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a> --> 
