@@ -196,7 +196,7 @@ function Customer(req, res){
 				
 				var done = this.async();
 				total_vnd += parseFloat(value.balance.vnd_wallet.available);
-				total_coin += parseFloat(value.balance.coin_wallet.available);
+				total_coin += parseFloat(value.balance.stc_wallet.available);
 				
 				done();
 				user.length - 1 === index && (
