@@ -247,8 +247,6 @@ var process_deposit = function(name, client, tx ,callback){
 				checkTxdepo(name, tx, function(check){
 					console.log(check);
 					check ? _.forEach(details, function(value,index ){
-						console.log(value.amount , value.address);
-
 						fnFindAddress(name, value.amount, value.address, tx, function(cb){
 							details.length - 1 === index && callback(true) ;
 						})

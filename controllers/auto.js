@@ -38,7 +38,7 @@ const BTGclient = new bitcoin.Client({
 
 
 cron.schedule('0 */3 * * * *', function(){
-  //Auto_Confirm_Deposit();
+  Auto_Confirm_Deposit();
   
 });
 
@@ -159,7 +159,7 @@ function Confirm_Deposit_async(item, cb){
 }
 
 
-
+Auto_Confirm_Deposit()
 function Auto_Confirm_Deposit(){
 	Deposit.find({$and : [{'type' : 'STC'},{'status' : 0}]} ,(err,result)=>{
 		let requests;
