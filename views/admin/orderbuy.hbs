@@ -30,8 +30,8 @@
                               <th>Date</th>
                               <th>Price</th>
                              
-                              <th>Quantity</th>
-                              <th>Total</th>
+                              <th>Min Amount</th>
+                              <th>Max Amount</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -41,11 +41,11 @@
                               <td>{{formatDate this.date "MM/DD/YYYY LT"}} </td>
                               <td >{{satoshi this.price}} VND</td>
                               
-                              <td>{{satoshi this.quantity}} STC</td>
+                              <td>{{satoshi this.min_amount}} STC</td>
                               
-                              <td>
-                                {{satoshi this.total}} VND
-                              </td>
+                              
+                             <td>{{satoshi this.max_amount}} STC</td>
+                              
                            </tr>
                            {{/each}} 
                         </tbody>
