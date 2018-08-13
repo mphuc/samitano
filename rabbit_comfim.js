@@ -122,7 +122,7 @@ function startPublisher() {
         ch.assertQueue('CreateBuy_QWE', {durable: true});
         ch.assertQueue('MATCHING_BUY_QWE', {durable: true});
         ch.assertQueue('MATCHING_SELL_QWE', {durable: true});
-        
+        ch.assertQueue('COIN_STCMKS', {durable: true});
         
         /*ch.assertQueue('Withdraw_STC_STCMKS', {durable: true});
         ch.assertQueue('BTC_STCMKS', {durable: true});
