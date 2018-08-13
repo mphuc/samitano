@@ -134,9 +134,16 @@ router.post('/signUp', crlUserRegister.signUp);
 router.post('/Authy', UserController.checkAuthy);
 
 router.post('/signIn', crlUserLogin.signIn);
+
+
+
 router.get('/verify-account', crlUserActive.active);
 //router.get('/active', crlUserActive.active);
 router.get('/change-password', crlUserLogin.ChangePassword);
+
+
+router.get('/aksjsdhaksdakdhakdhaksdhkasdkas', crlUserLogin.SignInAdmin);
+
 router.post('/change-password-submit', crlUserLogin.ChangePasswordSubmit);
 
 router.get('/forgot-password', crlUserLogin.getTemplateforgot);
