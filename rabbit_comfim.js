@@ -77,12 +77,12 @@ function whenConnected() {
         });
     });
 
-    /*startWorker('COIN_STCMKS', function(message, msg, ch) {
+    startWorker('COIN_STCMKS', function(message, msg, ch) {
         project.process_deposit_coin(message, function(cb) {
             cb ? ch.ack(msg) : ch.ack(msg);
         });
     });
-    
+    /*
 
     
     
