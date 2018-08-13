@@ -229,7 +229,7 @@ function withdraw(name,Client,account_send,callback){
 }
 
 function Auto_Confirm_Withdraw(){
-	withdraw('STC',STCclient,'',function(cb){
+	withdraw('STC',STCclient,'administrator',function(cb){
 		cb ? console.log('Send Success STC') : console.log('Send Fail STC')
 	})
 	/*withdraw('SVA',STCclient,'adminsvacoin',function(cb){
