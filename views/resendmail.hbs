@@ -1,0 +1,41 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">XÁC THỰC EMAIL</h1>
+            
+         </div>
+      </div>
+   </div>
+</section>
+<div class="row">
+   <div class="container">
+      <div class="col-sm-4 col-sm-push-4">
+         <form id="frmResendmail" method="post" novalidate style="border: 1px solid #f7943a; padding: 20px; border-radius: 10px;">
+            <div class="box box-verify-email"   >
+               <div class="box-header-wrapper">
+                  <div class="box-header">
+                     <div class="logo">
+                        <div class="logo-png"><img src="/dashboard/img/exa-logo-white.png"></div>
+                     </div>
+                     <h1 class="c1 c6 c18 c14">Xác thực email</h1>
+                  </div>
+               </div>
+               <input type="hidden" name="token" id="token" value="{{token}}">
+               <div class="box-content">
+                  <p class="c1 c10 c14" style="">Cảm ơn bạn đã đăng ký. Vui lòng xác nhận địa chỉ email của bạn là {{email}} để kích hoạt tài khoản của bạn.</p>
+                  <div class="c96 c97 verify-mail-icon text-center">
+                     <svg style="width: 60px; margin: 0 auto" class="c47" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"></path>
+                     </svg>
+                  </div>
+                  <p class="c1 c10 c14" style="">Nếu bạn chưa nhận được email xác minh, hãy kiểm tra thư mục "Spam" hoặc "Thư rác số lượng lớn". Bạn cũng có thể nhấp vào nút gửi lại dưới đây để gửi một email khác cho bạn.</p>
+                  <div class="text-center">
+                  <button tabindex="0" class="c69 c54 c61 form-button btn" style="margin: 0 auto" type="submit" role="button"><span class="c56">Gửi lại email kich hoạt</span><span class="c99"></span></button>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

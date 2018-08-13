@@ -1,0 +1,124 @@
+<div class="content ico_page">
+   <div class="container-fluid">
+              
+   <div class="row" style="margin-top: 20px;">
+      
+      <div class="col-md-12 card text-center">
+        <!-- <h3 class="text-center">ICO End</h3>
+        <div class="text-center" style="width: 335px;
+    margin: 0 auto;text-shadow: 1px 1px 1px #50aff0;">
+          <div class="countdown">
+              <div class="countdown-time">
+                 <ul class="clearfix" id="js-countDownico">
+                        <li class="item"><i class="day">00</i><span>days</span></li>
+                        <li class="blank">:</li>
+                        <li class="item"><i class="hour">00</i><span>hours</span></li>
+                        <li class="blank">:</li>
+                        <li class="item"><i class="minute">00</i><span>minutes</span></li>
+                        <li class="blank">:</li>
+                        <li class="item"><i class="second">00</i><span>seconds</span></li>
+                        <li class="blank">:</li>
+                        <li class="item"><i class="ms">00</i><span>milliseconds</span></li>
+                    </ul>
+              </div>
+           </div>
+           
+           <div class="clearfix"></div>
+           <div style="display: inline-block;margin: 0 auto">
+           <button  class="btn btn-primary center-block btn-exchnage pull-left" style="margin-right: 10px;" data-toggle="modal"   data-target="#ModalICO" >
+               Buy ICO
+            </button>
+            
+            <button  class="btn btn-social btn-fill btn-twitte pull-right" data-toggle="modal" data-target="#ModalDetailsICO"
+                    data-toggle="modal"
+                    data-target="#ModalDetailsICO">
+                 ICO Detail
+           </button>
+          </div>
+        </div> -->
+   <!--  <div class="div-price text-center" style="margin-top: 50px;">
+        <b>Price: {{price_ico}}</b><b> USD</b>
+    </div>
+    <div class="div-process">
+        <div class="div-process-left">
+            <div class="progress">
+                <div id="process--ico" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ div total_buy }}%">{{ div total_buy }} %</div>
+            </div>
+        </div>
+        <div class="div-process-rightss">
+            <span> {{ total_buy}} SFCC</span>/<span class="moneyFormat">3.000.000 SFCC</span>
+        </div>
+
+    </div>  -->
+
+         <div class="content" style="margin-top: 40px;">
+           
+            <table  class="table_balance table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0" >
+               <thead>
+                  <tr> 
+                     <th>Date</th>
+                     <th>Amount Coin</th>
+                     <th>Amount Payment</th>
+                     
+                     <th>Status</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {{#each order_history}} 
+                     
+                     <tr>
+                        <td>{{prettifyDate this.date}}</td>
+                        <td>{{satoshi this.amount_coin}} SFCC</td>
+                        <td>{{satoshi this.amount_payment}} {{ this.method_payment}}</td>
+                        {{#if_eq this.status '0'}}
+                          <td><span class="label label-warning">Processing</span></td>
+
+                        {{/if_eq}} 
+                        {{#if_eq this.status '1'}}
+                          <td><span class="label label-success">Finish</span></td>
+                        {{/if_eq}} 
+                        {{#if_eq this.status '3'}}
+                          <td><span class="label label-danger">Cancel Order</span></td>
+                        {{/if_eq}} 
+                     </tr>
+                    
+                   {{/each}} 
+               
+               </tbody>
+            </table>
+         </div> 
+
+
+         <div class="content" style="margin-top: 5px;">
+           <h4 class="text-center">Get 5% Referal Bonus</h4>
+            <table  class="table_balance table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0" >
+               <thead>
+                  <tr> 
+                     <th>Date</th>
+                     <th>Amount Coin</th>
+                     <th>Details</th>
+                     
+                   
+                  </tr>
+               </thead>
+               <tbody>
+                  {{#each user.balance.coin_wallet.history}} 
+                     {{#if_eq this.type 'refferalico'}}
+                     <tr>
+                        <td>{{prettifyDate this.date}}</td>
+                        <td>{{this.amount}} SFCC</td>
+                        <td>{{this.detail}} </td>
+                        
+                       
+                     </tr>
+                     {{/if_eq}} 
+                   {{/each}} 
+               
+               </tbody>
+            </table>
+         </div> 
+
+      </div>
+   </div>
+</div>
+

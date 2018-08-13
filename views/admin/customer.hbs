@@ -1,0 +1,64 @@
+<div class="content">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12">
+            <p class="pull-right">Total VND: {{satoshi total_vnd}} VND </p>  
+               <p class="pull-left">Total STC: {{satoshi total_coin}} STC</p>
+
+         </div>
+         <div class="col-md-12">
+         
+            <div class="card">
+
+               <div class="content">
+                  
+                  <div class="material-datatables">
+                     <table border="0" cellspacing="5" cellpadding="5">
+                        <tr>
+                           <td>Start date:</td>
+                           <td><input type="text" class="form-control" placeholder="month-day-year hour:min AM" id="min" name="min"></td>
+                           <td>ex: 01/24/2018 12:35 AM</td>
+                        </tr>
+                        <tr>
+                           <td>End date:</td>
+                           <td><input type="text" class="form-control" placeholder="month-day-year hour:min AM" id="max" name="max"></td>
+                           <td>ex: 01/24/2018 12:35 AM</td>
+                        </tr>
+                     </table>
+                     <table id="datatables_customer" class="table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0">
+                        <thead>
+                           <tr>
+                              <th>Date</th>
+                              <th>Username</th>
+                              <th>Email</th>
+                              
+                              <th>Amount COIN</th>
+                              <th>Amount BTC</th>
+                              
+                              <th class="disabled-sorting text-right">Actions</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {{#each users}} 
+                           <tr>
+                              <td>{{formatDate this.signupDate "MM/DD/YYYY LT"}} </td>
+                              <td>{{this.displayName}}</td>
+                              <td>{{this.email}}</td>
+                              
+                              <td>{{satoshi this.balance.coin_wallet.available}}</td>
+                              <td>{{satoshi this.balance.bitcoin_wallet.available}}</td>
+                              
+                              <td class="text-right">
+                                 <!-- <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="ti-heart"></i></a> --> <a style="    background: #012a54;" href="edit/customer/{{this._id}}" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil-alt"></i></a> <!-- <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a> --> 
+                              </td>
+                           </tr>
+                           {{/each}} 
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

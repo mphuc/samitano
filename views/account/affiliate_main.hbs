@@ -1,0 +1,63 @@
+<div class="content">
+   <div class="container-fluid">
+      {{#if_eq sponsor true}}
+      <div class="row">
+         <div class="col-md-6 col-md-push-3">
+            <div class="main-wallet" style="text-align: center;">
+               <img src="/static/img/uyttxprhsqycyximpzjb.png" width="200" />
+               <h5>Your upline:<strong>{{sponsor_name}}</strong></h5>
+            </div>
+         </div>
+      </div>
+      {{/if_eq}}
+      <div class="row">
+         <div class="panel" >
+            <div class="panel-body" style="margin-top: 0">
+               <div id="your_refferal" class="col-md-8 col-md-push-2">
+                  <div class="no-transaction text-center">
+                     <div class="img-circle"><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/1758-200.png" alt="Coin"></div>
+                     <label class="text-left pull-left">Refferal link:</label>
+                     <div class="clearfix"></div>
+                     <div class="input-group refferal_linkss">
+                        <input style="background: #fff; border: 1px solid #dcd7d7" id="link" readonly="" type="text" value="" class="form-control refferal_link">
+                        <span class="input-group-btn">
+                           <button class="btn btn-social btn-fill btn-twitter copy" data-clipboard-action="copy" data-clipboard-target="#link" type="button">
+                              <div class="icon dripicons-copy"></div>
+                              Copy
+                           </button>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="panel" >
+            <div class="panel-body" style="margin-top: 0">
+               <h3 class="text-center">Member</h3>
+               <div class="material-datatables">
+                  <table id="login_history" class="table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0" >
+                     <thead>
+                        <tr>
+                           <th>Username</th>
+                           <th>Email</th>
+                           <th>Date Create</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {{#each data_child}}
+                        <tr>
+                           <td>{{this.displayName}}</td>
+                           <td>{{this.email}}</td>
+                           <td>{{prettifyDate this.signupDate}}</td>
+                        </tr>
+                        {{/each}}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

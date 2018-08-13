@@ -1,0 +1,116 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">quảng cáo của bạn</h1>
+           
+         </div>
+      </div>
+   </div>
+</section>
+<div class="content wallet-balance" style="margin-bottom: 80px;">
+   <div class="container" id="create_finish_offer">
+   <div class="row">
+      <div class="col-sm-12">
+         
+         <div data-reactroot="">
+            <div>
+               <div class="">
+                  
+                  <div class="box-body text-left">
+                        <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+                           <div class="offer-details-table">
+                              <div class="text-center">
+                                 <span>Đây là quảng cáo của bạn.</span><span>Trạng thái </span>
+                                 {{#if_eq order.status '0'}}
+                                 <strong class="text-success">Đang hoạt động</strong>
+                                 {{/if_eq}}
+                                 {{#if_eq order.status '1'}}
+                                 <strong class="text-danger">Đang tạm dừng</strong>
+                                 {{/if_eq}}
+
+                                 <br><br>
+                                 <div class="btn-group btn-group-sm">
+
+                                    {{#if_eq order.status '0'}}
+                                    <a href="/offers/create-buy/pause/{{order._id}}" class="btn btn-danger btn-disable"><em class="fa fa-pause"></em><span class="hidden-xs">Tạm dừng</span></a>
+                                    {{/if_eq}}
+                                    {{#if_eq order.status '1'}}
+                                    <a href="/offers/create-buy/start/{{order._id}}" class="btn btn-success btn-enable"><em class="fa fa-play"></em><span class="hidden-xs">Kích hoạt</span></a>
+                                    {{/if_eq}}
+                                    <a class="btn btn-default btn-edit" href="/offers/create-buy/edit/{{order._id}}"><em class="fa fa-pencil"></em><span class="hidden-xs">Chỉnh sửa</span></a>
+
+                                    <a href="/offers/create-buy/remove/{{order._id}}" class="btn btn-primary btn-delete">
+                                       <em class="fa fa-times"></em><span class="hidden-xs">Xóa</span>
+                                    </a>
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                           <hr>
+                           <div class="panel offer-details">
+                              <div class="panel-heading"><span>Thông tin chi tiết quảng cáo</span></div>
+                              <table class="table table-bordered">
+                                 <thead>
+                                    <tr>
+                                       <th width="40%">Bán cho</th>
+                                       <th><a href=""><u>{{order.username}}</u></a></th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>Giá</td>
+                                       <td>
+                                          <strong class="offer-price text-danger">
+                                             <span>{{satoshivns order.price}} VND</span>/<span class="text-btc-color">STC</span>
+                                          </strong>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>Lượng giới hạn:</td>
+                                       <td>
+                                          <span class="currency-amount">
+                                             <span class="badge badge-warning btc">
+                                                {{satoshi order.min_amount}} STC
+                                             </span>
+                                             
+                                          </span>
+                                          
+                                          <span class="currency-amount">
+                                             <span class="badge badge-warning btc">
+                                                {{satoshi order.max_amount}} STC
+                                             </span>
+                                             
+                                          </span>
+                                       </td>
+                                    </tr>
+                                    
+                                 </tbody>
+                              </table>
+                           </div>
+                           <hr>
+                           <div class="trade-questions">
+                              <div id="questions-buy" class="panel-group">
+                                 <div id="safe-to-sell" class="panel collapsed panel panel-default">
+                                    <div role="tab" id="safe-to-sell--heading" class="panel-heading">
+                                       <div class="panel-title"><a class="collapsed" data-toggle="collapse" data-target="#demo">Giao dịch có an toàn không?</a></div>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="demo" class="collapse">
+                                       <div class="panel-body">
+                                          <p>Santacoin của bạn sẽ được khoá lại và sẽ không được giải phóng cho đến khi bạn đã nhận được thanh toán từ người mua.</p>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+      </div>
+   </div>
+</div>

@@ -1,0 +1,87 @@
+@media (min-width: 992px){
+	#Login-page .container , #Register-page .container{
+	    width: 1190px;
+	    max-width: 100%;
+	}
+
+}
+@media screen and (max-width: 992px) {
+
+	#Login-page .text-mb{
+		display: block;
+	}
+	#Login-page .bg-while .frm-login-header .pull-right{
+		display: none;
+	}
+	#Login-page .login-page-right{
+		margin: auto;
+		float: none;
+		border-radius: 5px;
+	}
+	#Login-page, #Login-page div.main {
+		background: #fff;
+	}
+
+	#Login-page .container .row-content{
+		border:1px solid #cecece;
+	}
+
+}
+
+@media screen and (max-width: 768px) {
+	#Login-page .bg-while .frm-login-header .pull-right{
+		display: block;
+	}
+	#Login-page  .frm-login-header + .m-t-15{
+		margin-top: 0px;
+	}
+	#Login-page .container .row-content{
+		border:0px;
+	}
+	#Login-page div.main{
+		background: none;
+		padding: 0px;
+	}
+	#Register-page .card-contact{
+		border: 0px;
+	}
+	#Login-page .bg-while, #Register-page .bg-while{
+		padding: 0px 15px;
+	}
+	#Login-page .login-back{
+		display: none;
+	}
+
+	#Login-page .login-logo, #Register-page .login-logo{
+		margin: auto;
+		float: none !important;
+		text-align: center;
+	}
+	.frm-login-header .pull-left{
+		display: none;
+	}
+
+	.frm-login-header .pull-right,#Register-page .login-href{
+		float: left !important;
+	}
+	#Register-page .login-href{
+		padding-left: 0px;
+	}
+
+	.frm-login-header .pull-right a{
+		float: left;
+	}
+
+	#Login-page{
+		background: #fff;
+	}
+
+	#Login-page .login-page-right{
+		border: 0px;
+	}
+	#frmRegister{
+		width: 100%;
+		max-width: 100%;
+	}
+}
+

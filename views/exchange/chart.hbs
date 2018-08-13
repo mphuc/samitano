@@ -1,0 +1,254 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="/static/chart/jquery-3.1.1.min.js"></script>
+    <script src="/static/chart/highstock.js"></script>
+    <script src="/static/chart/exporting.js"></script>
+    <script type="text/javascript" src="/static/exchange/lodash.core.min.js"></script>
+</head>
+<body style="position: relative;overflow: hidden;">
+    <div class="loading_cs"><span style="">Loading...</span></div>
+    <div class="button_chart" style="text-align: center; padding-top: 20px;  margin: 0 auto ">
+        <span data-min="6h" class="active">6h</span>
+        <span data-min="24h">24h</span>
+        <span data-min="3d">3d</span>
+        <span data-min="1w">1w</span>
+        <span data-min="2w">2w</span>
+    </div>
+    <div id="container" style="width: 100%  ;height:500px; margin: 0 auto; overflow: hidden;">
+        
+    </div>
+    <input type="hidden" value="{{MarketName}}" id="_MarketName_" name="">
+</body>
+</html>
+
+<script type="text/javascript">
+
+   
+    var MarketName = $('#_MarketName_').val();
+    load_chart_day('6h');
+
+
+    $('#change_day_chage').on('change',function(){
+        var min = $('#change_day_chage').val();
+        $('.loading_cs').show();
+        load_chart_day(min);
+    })
+    function load_chart_day(min)
+    {
+        $.getJSON("/Market/load-json-chart/"+MarketName+"?min="+min+"", function (datass) {
+            try {
+                var data = datass.result;
+              
+                var ohlc = [],
+                    volume = [],
+                    dataLength = _.size(data),
+                    groupingUnits = [
+                        ['minute', [5, 15, 30]],
+                        ['hour', [1]],
+                        ['day', [1]],
+                        ['week', [1]],
+                        ['month', [1, 2, 3, 4, 6]]
+                    ];
+
+                    i = 0;
+                for (var i = 0; i < dataLength; i++) {
+                    var created_on = data[i].created_on.split(' ');
+                    var created_on_date = created_on[0].split('-');
+                    var created_on_time = created_on[1].split(':');
+                    var date = Date.UTC(created_on_date[0], created_on_date[1] - 1, created_on_date[2], created_on_time[0], created_on_time[1]);
+                    ohlc.push([date, parseFloat(data[i].open), parseFloat(data[i].hight), parseFloat(data[i].low), parseFloat(data[i].close)]);
+                    volume.push([date, parseFloat(data[i].volume)]);
+                }
+
+                /*for (i; i < dataLength; i += 1) {
+                   
+
+
+                    //date,ask,hight,low,bid,volume
+                    ohlc.push([
+                        data[i][0], // the date
+                        data[i][1], // open
+                        data[i][2], // high
+                        data[i][3], // low
+                        data[i][4] // close
+                    ]);
+
+                    volume.push([
+                        data[i][0], // the date
+                        data[i][5] // the volume
+                    ]);
+                }*/
+                Highcharts.stockChart('container', {
+
+                    rangeSelector: {
+                        selected: 1
+                    },
+
+                    title: {
+                        text: ''
+                    },
+                    yAxis: [{
+                        labels: {
+                            align: 'right',
+                            x: -3
+                        },
+                        title: {
+                            text: 'Price (BTC)'
+                        },
+                        height: '60%',
+                        lineWidth: 2,
+                        resize: {
+                            enabled: true
+                        }
+                    }, {
+                        labels: {
+                            align: 'right',
+                            x: -3
+                        },
+                        title: {
+                            text: 'Volume'
+                        },
+                        top: '65%',
+                        height: '35%',
+                        offset: 0,
+                        lineWidth: 2
+                    }],
+
+                    tooltip: {
+                        split: true
+                    },
+
+                    exporting: {
+                        enabled: false
+                    },
+                    series: [{
+                        type: 'candlestick',
+                        name: MarketName,
+                        data: ohlc,
+                        dataGrouping: {
+                            units: groupingUnits
+                        }
+                    }, {
+                        type: 'column',
+                        name: 'Volume',
+                        data: volume,
+                        yAxis: 1,
+                        dataGrouping: {
+                            units: groupingUnits
+                        }
+                    }]
+                });
+            } 
+            catch (e) 
+            {
+                console.log(e);
+            }
+        
+        });
+        
+        $('.loading_cs').hide();
+        $('#container').removeClass('loading');
+    }
+</script>
+<script type="text/javascript">
+    $('.button_chart span').on('click',function(){
+        $('#container').addClass('loading');
+        var min = $(this).data('min');
+        $('.button_chart span').removeClass('active');
+        $(this).addClass('active'); 
+        load_chart_day(min);
+
+    })
+    
+     setInterval(function(){ 
+        
+        var min = $('.button_chart').find('.active').data('min');
+        load_chart_day(min);
+    }, 1000000);
+
+</script>
+<style type="text/css">
+    #container.loading:before{
+        content: 'Loading...';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 9999999;
+       background: #5f5d5d91;
+       text-align: center;
+       vertical-align: middle;
+       color: #fff;
+    }
+    .highcharts-range-selector-buttons,.highcharts-input-group{
+        display: none;
+    }
+    .loading_cs{
+        text-align: left;
+        padding: 50px;
+        color: #fff;
+        background: #5f5d5d91;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+        z-index: 999999999;
+    }
+    .highcharts-point.highcharts-color-1 {
+         fill: #1b334d;
+         opacity: 0.7
+    }
+    .highcharts-point-down{
+          fill: #e6391e;
+        stroke: #e6391e;
+        border:1px solid #e6391e;
+    }
+    .highcharts-point-up{
+        fill: #0c8824;
+        stroke: #0c8824;
+        border:1px solid #0c8824;
+    }
+
+    .button_chart span {
+        background-color: #A0A0A0;
+        font-size: 14px;
+        padding: 3px 10px;
+        color: white;
+        border-radius: 2px;
+        cursor: pointer;
+        font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+
+    }
+    .button_chart span.active{
+        background-color: rgb(26, 93, 162);
+    }
+    .highcharts-credits{
+        display: none;
+    }
+    .highcharts-background{
+        fill: #fff;
+    }
+    .highcharts-grid-line{
+            stroke: #efefef;
+    }
+    .highcharts-axis-line{
+       stroke: #efefef;
+        stroke-width: 1;
+    }
+    .highcharts-scrollbar{
+        display: none;
+    }
+    .highcharts-navigator-outline{
+        stroke: #efefef;
+        display: none;
+    }
+    .highcharts-axis.highcharts-yaxis.highcharts-navigator-yaxis{
+        display: none;
+    }
+    .highcharts-navigator-mask-inside{
+        fill :#5a5a5a54;
+        border-radius: 50px;
+    }
+</style> 

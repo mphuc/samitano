@@ -1,0 +1,108 @@
+  <div class="content exchange-page">
+  <input type="hidden" id="_NAMECOIN_" value="{{namecoin}}" name="">
+  <input type="hidden" id="_EXCHANGE_" value="{{exchange}}" name="">
+  <input type="hidden" id="_ID_" value="{{user._id}}" name="">
+   <div class="container-fluid" >
+      <div class="row">   
+      
+       <div class="col-md-12 hidden_js">
+            <div class="card">
+               <div class="content">
+                  <h4 class="title">OPEN</h4>
+                  <div class="table-exchanges" ng-controller="CtrOrderOpen">
+                   <table border="1" cellpadding="0" cellspacing="0"  style="border-collapse:collapse;" class="table table-striped table-bordered table-hover"  >
+                      <thead>
+                          <tr>
+                             <th class="text-left" style="text-align: left;">Open Date</th>
+                             <th class="text-left">Type</th>
+                             <th class="text-right">Bid/Ask</th>
+                             <th class="text-center">Market</th>
+                             <th class="text-right">Unit Total</th>
+                             <th class="text-right hidden-sm hidden-xs">Actual Rate </th>
+                             <th class="text-right hidden-sm hidden-xs">Estimated Total</th>
+                             <th><i class="fa fa-times"></i></th>
+                          </tr>
+                       </thead>
+                       <tbody> 
+                          <tr ng-repeat="row in data | orderBy: '-date' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)">
+                            
+                            <td  class="text-left" style="text-align: left;"  >{[{row.date}]}</td>
+                            <td class="text-center" ng-if="row.type == 'Buy'"><span class="buy">BUY</span> </td>
+                            <td class="text-center" ng-if="row.type == 'Sell'"><span class="sell">SELL </span></td>
+                            <td class="text-center" style="color: #337ab7;">VND-STC</td>
+                            <td class="text-right">{[{row.price}]}</td>
+                            <td class="text-right">{[{row.quantity}]}</td>
+                            <td class="text-right hidden-sm hidden-xs">{[{row.commission}]}</td>
+                            <td class="text-right hidden-sm hidden-xs" >{[{row.total}]}</td>
+                            <td class="text-center">
+                              <span class="remove_order_exchange" ng-click="ClickCancelOrder(row.remove)">
+                                <i class="fa fa-times"></i>
+                              </span>
+                            </td>
+                            
+                          </tr>
+                          <tr >
+                            <td style="text-align: center;" class="text-center" colspan="8" ng-show="data.length == 0">No Data</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                    <pagination class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+                    <div class="clearfix"></div>
+                 </div>
+               
+               </div>
+            </div>
+         </div>   
+          
+
+         <div class="col-md-12 hidden_js" ng-controller="CtrMyMarketHistory">
+              <div class="card">
+                <div class="content">
+                    <h4 class="title pull-left">COMPLETED</h4>
+                    <div class="pull-right" style="margin-top: 5px;"><span style="line-height: 30px; margin-right: 5px" class="pull-left">Display</span>
+                      <select style="width: 70px; height: 30px;" class="form-control pull-left" ng-model="viewbys" ng-change="setItemsPerPage_history(viewbys)">
+                        <option value="10" selected="selected">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>  
+                      <span style="line-height: 30px; margin-left: 5px" class="pull-left">rows</span>
+                    </div>
+                    <div class="table-exchanges" >
+                     <table border="1" cellpadding="0" cellspacing="0"  style="border-collapse:collapse;"  class="table table-striped table-bordered table-hover"  >
+                         <thead>
+                            <tr>
+                               <th class="text-left" style="text-align: left;">Date</th>
+                               <th class="text-center">Buy/Sell</th>
+                               <th class="text-right">Bid/Ask</th>
+                               <th class="text-center">Market</th>
+                               <th class="text-right hidden-sm hidden-xs">Total Units </th>
+                               <th class="text-right hidden-sm hidden-xs">Total Cost</th>
+                            </tr>
+                         </thead>
+                         <tbody> 
+                            <tr ng-repeat="row in data | orderBy: '-date' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)" ng-if="row.user_id_buy != row.user_id_sell">
+                              <td class="text-left" style="text-align: left;">{[{row.date  | date:"MM/dd/yyyy h:mm a"}]}</td>
+                              <td ng-if="row.user_id_buy == user_id" class="buy text-center">BUY</td>
+                              <td ng-if="row.user_id_sell == user_id" class="sell text-center">SELL</td> 
+                              <td class="text-center" style="color: #337ab7;">VND-STC</td>
+                              <td class="text-right">{[{(row.price/100000000).toFixed(8)}]}</td>
+                              <td class="text-right hidden-sm hidden-xs">{[{(row.quantity/100000000).toFixed(8)}]}</td>
+                              <td class="text-right hidden-sm hidden-xs">{[{(row.total/100000000).toFixed(8)}]}</td>
+                            </tr>
+                            <tr >
+                            <td style="text-align: center;" class="text-center" colspan="6" ng-show="data.length == 0">No Data</td>
+                          </tr>
+                         </tbody>
+                      </table>
+                      <div class="clearfix"></div>
+                      <pagination class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+                      <div class="clearfix"></div>
+                   </div>
+                 </div>
+              </div>
+           </div>
+
+      </div>
+   </div>
+</div>

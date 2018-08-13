@@ -1,0 +1,52 @@
+<div class="head logins_page">
+   <div class="logo page_login">
+      
+      <a class="site_logo" href="/" id="logo-home">
+         
+         <img src="/assets/img/logo1.png" alt="logo" class="img-responsive navbar-brand logo1">
+         <img src="/assets/img/logo2.png" alt="logo" class="img-responsive navbar-brand logo2">
+         <img src="/assets/img/logo3.png" alt="logo" class="img-responsive logo3">
+      </a>
+      <h3 style="text-transform: uppercase;color: #fff;font-size: 30px;">SANTA EXCHANGE</h3>
+     
+   </div>
+   <div class="login">
+      <div class="sap_tabs">
+         <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+            <h2 class="text-center">Login</h2>
+            <span class="pull-right create_account"></span>
+            <div class="clearfix"></div>
+            <div class="resp-tabs-container">
+               <div class="">
+                  <div class="login-top">
+                     <form id="frmLogin" action="/SignIn" method="POST">
+                        <input type="text" class="email" placeholder="Email" name="email" />
+                        <input type="password" class="password" placeholder="Password" name="password" />  
+                        <div class="capcha_google">
+                           <div class="g-recaptcha" data-theme="light" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="6LepfzQUAAAAALZ2SnNSFFj4sO4w7GeG0MpRIj77" data-callback="onSubmit"></div>
+                        </div>
+                        <div class="login-bottom login-bottom1">
+                           <div class="submit">
+                              <input type="submit" value="LOGIN"/>
+                           </div>
+                           <div class="clear"></div>
+                        </div>
+                  </div>
+                  <script>
+                     function onSubmit(token) {
+                        $('#frmLogin').submit();
+                     }
+                  </script>
+                  </form>
+                  <p class="text-center forgotpass">Forgot <a href="/forgot-password">password?</a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="clear"></div>
+</div>
+<div class="account text-center">
+   <p>Do not have an account? <a href="/signup">Create Account</a></p>
+   <div class="clear"></div>
+</div>

@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" >
+      <link rel="icon" type="image/png" href="/images/favicon.png" >
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+      <meta name="description" content="">
+      <title>{{ title }} </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+      <meta name="viewport" content="width=device-width" >
+      <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+      <link href="/static/css/bootstrap.min.css" rel="stylesheet" >
+      <link href="/static/css/addon.css" rel="stylesheet" >
+      <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+      <link href="/css/sweetalert.css" rel="stylesheet" >
+      <link href="/static/css/jquery.toast.css" rel="stylesheet">
+      <link href="/static/css/corecss.css" rel="stylesheet">
+      <link href="/static/css/customer.css" rel="stylesheet">
+   </head>
+   <body ng-app="myApp">
+      <div id="pad-wrapper" >
+         <div class="clearfix"></div>
+         <div id="header-navigation" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="header-top-header hidden-xs">
+               <div class="container">
+                  <div class="header-top-right ">
+                     {{#if_eq has_login true}}
+                        <div class="pull-left">
+                           <div class="header-top-left">
+                              <ul class="header-top-nav">
+                                 <li>
+                                    <span>
+                                       <span><span>Số dư</span><span><span class="nav-item balance-item available-fiat"><u>₫{{satoshivns user.balance.vnd_wallet.available}}</u></span>
+
+                                       <!-- <span class="nav-item balance-item available-fiat"><u>₫{{satoshivns user.balance.vnd_wallet.available_lock}}</u></span> -->
+
+
+                                       <span class="nav-item balance-item available-btc"><u>฿{{satoshi user.balance.stc_wallet.available}}</u></span></span></span>
+                                       <!-- <span class="nav-item balance-item available-btc"><u>฿{{satoshi user.balance.stc_wallet.available_lock}}</u></span> -->
+                                       </span></span>
+                                    </span>
+
+                                    <div class="nav-item notifications-item dropdown btn-group">
+                                       <a class="badge dropdown-toggle "><i style="margin-left: 0px;" class="fa fa-bell"></i></a>
+                                       <div class="dropdown-menu">
+                                          <ul class="notifications-dropdown">
+                                             <li class="notifications-list-wrapper">
+                                                <div class="notifications-list">
+                                                   <div class="notification-item viewed">
+                                                      <div class="notification-content">
+                                                         <a href="/vn/verify">
+                                                            <div>Tài liệu "ID trước khuôn mặt của bạn" đã được chấp nhận. </div>
+                                                           
+                                                         </a>
+                                                      </div>
+                                                      <i class="notification-icon fa fa-check green"></i>
+                                                   </div>
+                                                   <div class="notification-item viewed">
+                                                      <div class="notification-content">
+                                                         <a href="/vn/verify">
+                                                            <div>Tài khoản của bạn đã được xác nhận</div>
+                                                          
+                                                         </a>
+                                                      </div>
+                                                      <i class="notification-icon fa fa-check green"></i>
+                                                   </div>
+                                                   
+                                                  
+                                                   
+                                                   
+                                                </div>
+                                             </li>
+                                             <!-- <li class="buttons-wrapper">
+                                                <div class="row">
+                                                   <div class="col-xs-6"><a class="btn-view-all" href="/vn/notifications">Xem hết</a></div>
+                                                   <div class="col-xs-6"><a class="btn-mark-all-as-read">Đã đọc hết</a></div>
+                                                </div>
+                                             </li> -->
+                                          </ul>
+                                       </div>
+                                    </div>
+
+                                 </li>
+                                
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="pull-right">
+                           <span class="btn-login login">
+                              <i class="fa fa-support" aria-hidden="true"></i><a href="/support">Hỗ trợ</a>
+                           </span>
+                           <span class="btn-login login">
+                              <i class="fa fa-cog" aria-hidden="true"></i><a href="/setting">Cài đặt</a>
+                           </span>
+                           <span class="btn-login login">
+                              <i class="fa fa-sign-out"></i><a href="/logout">Đăng xuất</a>
+                           </span>
+                        </div>
+                     {{else}}
+                        
+                        <div class="pull-right">
+                           <span class="btn-login login">
+                              <i class="fa fa-sign-in"></i><a href="/signin">Đăng nhập</a>
+                           </span>
+                           <span class="btn-login login">
+                              <i class="fa fa-user"></i><a href="/signup">Đăng ký</a>
+                           </span>
+                        </div>
+                     {{/if_eq}}
+                     
+                  </div>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="header-main-header">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-4 col-sm-4">
+                        <a href="/" class="pull-left">
+                        <img width="240" style="margin-top: 14px;" src="/images/logo.png" alt="logo" class="img-responsive">
+                        </a>
+                        <div class="hidden-sm">
+                           <div class="pull-right">
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-8 col-sm-8">
+                        
+                        <div class="navbar-collapse collapse">
+                           {{#if_eq has_login false}}
+                           <ul class="nav navbar-nav navbar-right">
+                              
+                              {{#if_eq menu 'dashboard'}}
+                                 <li class="active">
+                                    <a href="/">
+                                    <span class="">&nbsp; Mua bán STC</span>
+                                    </a>
+                                 </li>
+                              {{else}}
+                                 <li >
+                                    <a href="/">
+                                    <span class="">&nbsp; Mua bán STC</span>
+                                    </a>
+                                 </li>
+                              {{/if_eq}}
+                              {{#if_eq menu 'wallet-stc'}}
+                                 <li class="active">
+                                 <a href="/wallet-stc">
+                                 <span class="">&nbsp; Ví STC</span>
+                                 </a>
+                              </li>
+                              {{else}}
+                                 <li >
+                                    <a href="/wallet-stc">
+                                    <span class="">&nbsp; Ví STC</span>
+                                    </a>
+                                 </li>
+                              {{/if_eq}}
+                              {{#if_eq menu 'signin'}}
+                                 <li class="active">
+                                 <a href="/signin">
+                                 <span class="">&nbsp; Đăng nhập</span>
+                                 </a>
+                              </li>
+                              {{else}}
+                                 <li >
+                                    <a href="/signin">
+                                    <span class="">&nbsp; Đăng nhập</span>
+                                    </a>
+                                 </li>
+                              {{/if_eq}}
+                              {{#if_eq menu 'signup'}}
+                                 <li class="active">
+                                 <a href="/signup">
+                                 <span class="">&nbsp; Đăng ký</span>
+                                 </a>
+                              </li>
+                              {{else}}
+                                 <li >
+                                    <a href="/signup">
+                                    <span class="">&nbsp; Đăng ký</span>
+                                    </a>
+                                 </li>
+                              {{/if_eq}}
+                           </ul>
+                           {{else}}
+                           <ul class="nav navbar-nav navbar-right">
+                              
+                              
+                              {{#if_eq menu 'dashboard'}}
+                                 <li class="active">
+                                 <a href="/">
+                                 <span class="">&nbsp; Mua bán STC</span>
+                                 </a>
+                              </li>
+                              {{else}}
+                                 <li >
+                                    <a href="/">
+                                    <span class="">&nbsp; Mua bán STC</span>
+                                    </a>
+                                 </li>
+                              {{/if_eq}}
+
+                              {{#if_eq menu 'dashboards'}}
+                                 <li class="active">
+                                    <a href="/dashboard">
+                                    <span class="">&nbsp; Bảng điều khiển</span>
+                                    </a>
+                                 </li>  
+                              {{else}}
+                                 <li>
+                                    <a href="/dashboard">
+                                    <span class="">&nbsp; Bảng điều khiển</span>
+                                    </a>
+                                 </li> 
+                              {{/if_eq}}
+
+                              
+                              {{#if_eq menu 'balance-stc'}}
+                                 <li class="active">
+                                    <a href="/balance/stc">
+                                    <span class="">&nbsp; Ví STC</span>
+                                    </a>
+                                 </li>  
+                              {{else}}
+                                 <li>
+                                    <a href="/balance/stc">
+                                    <span class="">&nbsp; Ví STC</span>
+                                    </a>
+                                 </li> 
+                              {{/if_eq}}
+                              {{#if_eq menu 'balance-vnd'}}
+                                 <li class="active">
+                                    <a href="/balance/vnd">
+                                    <span class="">&nbsp; Ví VND</span>
+                                    </a>
+                                 </li>
+                              {{else}}
+                                 <li >
+                                    <a href="/balance/vnd">
+                                    <span class="">&nbsp; Ví VND</span>
+                                    </a>
+                                 </li>  
+                              {{/if_eq}}
+                           </ul>
+                           {{/if_eq}}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="" style="position: relative;">
+               <div class="clearfix"></div>
+               {{{ body }}}
+            </div>
+
+            <div class="clearfix"></div>
+               <footer id="footer" class="footer mobile-app-hidden">
+                  <div class="footer-copyright">
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4 col-md-3 col-xs-12 text-center-mobile">
+                              <a class="main_logo" href="/vn/">
+                                 <div style="margin-bottom: 20px;">
+                                    <img width="180" style="" src="/images/logo.png" alt="logo" class="img-responsive">
+                                 </div>
+                              </a>
+                              <div class="company-info-section">
+                                 <ul class="contact-list" style="margin-top: 0px;">
+                                    <li>
+                                       <i class="icon icon-mail"></i><span>Email</span><!-- react-text: 27 -->:<!-- /react-text --><!-- react-text: 28 --> <!-- /react-text --><a class="mailto" href="mailto:team@samitano.com">team@samitano.com</a>
+                                    </li>
+                                    <li data-ng-if="!vm.isMobileApp()"><i class="icon icon-chat"></i><a href="">Hỗ trợ trực tuyến</a></li>
+                                    <li><i class="icon icon-lifebuoy"></i><a href="#" target="_blank" rel="noopener noreferrer">Những câu hỏi thường gặp</a></li>
+                                    <li><i class="icon icon-blogger"></i><a href="#" target="_blank" rel="noopener noreferrer">Blog</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4 col-md-3 col-xs-12 footer-column">
+                              <h5 class="title">Giới thiệu</h5>
+                              <ul>
+                                 <li><a href="#">Về Chúng Tôi</a></li>
+                                 <li><a href="#">Tuyển dụng</a></li>
+                                 <li><a href="#e">Giao dịch đảm bảo</a></li>
+                                 <li><a href="/#">Truyền thông</a></li>
+                                 <li><a href="#">Chính sách và Điều khoản</a></li>
+                                 <li><a href="##">Become our partner</a></li>
+                              </ul>
+                           </div>
+                           <div class="col-lg-4 col-sm-4 col-md-3 col-xs-12 footer-column">
+                              <h5 class="title">Mạng xã hội</h5>
+                              <ul>
+                                 <li>
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                       <i aria-hidden="true" class="icon-facebook-squared"></i><!-- react-text: 60 -->Facebook<!-- /react-text -->
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                       <i class="icon-twitter-squared"></i><!-- react-text: 64 -->Twitter<!-- /react-text -->
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                       <i class="icon-reddit-squared"></i><!-- react-text: 68 -->Reddit<!-- /react-text -->
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                       <i class="icon-linkedin-squared"></i><!-- react-text: 72 -->LinkedIn<!-- /react-text -->
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href=#" target="_blank" rel="noopener noreferrer">
+                                       <i aria-hidden="true" class="icon-youtube-squared"></i><!-- react-text: 76 -->Youtube<!-- /react-text -->
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                       <i aria-hidden="true" class="icon-weibo"></i><!-- react-text: 80 -->Weibo<!-- /react-text -->
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="col-md-3 mobile-links-wrapper visible-md"><span><span class="mobile-links"><a class="link appstore" href="https://itunes.apple.com/us/app/remitano/id1116327021?ls=1&amp;mt=8" rel="noopener noreferrer" target="_blank"><img alt="Download từ AppStore" class="img-responsive" src="appstore.png"></a><a class="link playstore" href="https://play.google.com/store/apps/details?id=com.remitano.remitano&amp;utm_source=global_co&amp;utm_medium=prtnr&amp;utm_content=Mar2515&amp;utm_campaign=PartBadge&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" rel="noopener noreferrer" target="_blank"><img alt="Download từ Google Play" class="img-responsive" src="playstore.png"></a></span></span></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clearfix"></div>
+               </footer>
+
+         </div>
+         <div id="modalDepositBTC" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">NẠP VIỆT NAM ĐỒNG (VND)</h4>
+                  </div>
+                  <div class="modal-body text-center">
+                     <div class="wallets"></div>
+                     <div class="clearfix"></div>
+                  </div>
+                  <div class="col-sm-12" data-bind="visible:wallet.showDepositCallOut">
+                     <div class="bs-callout bs-callout-danger">
+                        <p><strong>Vui lòng nạp đúng tên tài khoản, số tài khoản, ngân hàng. Chúng tôi không chịu trách nhiệm cho sự mất mát của bạn.</strong></p>
+                     </div>
+                  </div>
+                  <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button></div>
+               </div>
+            </div>
+         </div>
+         <div id="modalDepositCOIN" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">NẠP SANTACOIN (STC)</h4>
+                  </div>
+                  <div class="modal-body text-center">
+                     <div class="wallets"></div>
+                     <div class="clearfix"></div>
+                  </div>
+                  <div class="col-sm-12" data-bind="visible:wallet.showDepositCallOut">
+                     <div class="bs-callout bs-callout-danger">
+                        <p><strong>Vui lòng gửi đúng địa chỉ Santacoin. Chúng tôi không chịu trách nhiệm cho sự mất mát của bạn.</strong></p>
+                     </div>
+                  </div>
+                  <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button></div>
+               </div>
+            </div>
+         </div>
+         <div id="modalWithdrawBTC" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">SỐ DƯ TÀI KHOẢN: <b class="amount_btc">{{ satoshivn user.balance.bitcoin_wallet.available}}</b> VND</h4>
+                  </div>
+                  <form method="post" name="frmWihtdrawBTC" accept-charset="utf-8" id="frmWihtdrawBTC" class="send-coin-form" autocomplete="off" novalidate="novalidate">
+                     <div class="modal-body">
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Ngân hàng:</label>
+                           <div class="input-group"><input type="text" class="form-control amount_usd" name="namebank" id="namebank"><span class="input-group-addon">NH</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Số tài khoản:</label>
+                           <div class="input-group"><input type="text" class="form-control amount_usd" name="numberbank" id="numberbank"><span class="input-group-addon">STK</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Tên tài khoản: </label>
+                           <div class="input-group"><input type="text" class="form-control amount_usd" name="horderbank" id="horderbank"><span class="input-group-addon">TTK</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Chi nhánh:</label>
+                           <div class="input-group"><input type="text" class="form-control amount_usd" name="branchbank" id="branchbank"><span class="input-group-addon">CN</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Số lượng</label>
+                           <div class="input-group"><input type="text" class="form-control amount_usd" name="amount" id="amount"><span class="input-group-addon">VND</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Phí giao dịch:</label>
+                           <div class="input-group"><input type="text" readonly class="form-control amount_usd" name="fee" id="fee" value="5.000"><span class="input-group-addon">VND</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Số lượng rút được</label>
+                           <div class="input-group"><input readonly type="text" class="form-control amount_usd" name="amount_withdraw" id="amount_withdraw"><span class="input-group-addon">VND</span></div>
+                        </div>
+                     </div>
+                     <div class="modal-footer"><button type="submit" class="btn btn-social btn-fill btn-twitter frmWihtdrawBCH_Submit" data-type="coin"><i class="fa fa-cloud-upload" data-icon="fa-bitcoin" style="background-position: right;filter: brightness(0) invert(1)"></i> Xác nhận rút</button></div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div id="modalWithdrawCOIN" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">SỐ DƯ TÀI KHOẢN:<b class="amount_COIN"> {{satoshi user.balance.coin_wallet.available}}</b> STC</h4>
+                  </div>
+                  <form method="post" action="/account/balance/withdraw-sva" accept-charset="utf-8" id="frmWihtdrawCOIN" class="send-coin-form" autocomplete="off" novalidate="novalidate">
+                     <div class="modal-body">
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Ví</label>
+                           <div class="input-group"><input type="text" class="form-control amount_usd" name="address" id="address"><span class="input-group-addon">ADDR</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Số lượng</label>
+                           <div class="input-group"><input type="text" class="form-control amount_usd" name="amount" id="amount"><span class="input-group-addon">STC</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Phí giao dịch</label>
+                           <div class="input-group"><input type="text" readonly class="form-control amount_usd" name="fee" value="0.03" ><span class="input-group-addon">STC</span></div>
+                        </div>
+                        <div class="form-group">
+                           <label style="padding-left:0px" class="col-md-12">Số lượng rút được</label>
+                           <div class="input-group"><input readonly type="text" class="form-control amount_usd" name="amount_withdraw" id="amount_withdraw"><span class="input-group-addon">STC</span></div>
+                        </div>
+                     </div>
+                     <div class="modal-footer"><button type="submit" class="btn btn-social btn-fill btn-twitter frmWihtdrawBCH_Submit" data-type="coin"><i class="fa fa-cloud-upload" data-icon="fa-bitcoin" style="background-position: right;filter: brightness(0) invert(1)"></i> Rút</button></div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div id="modalWithdrawConfirmCOIN" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">Xác nhận rút Santacoin</h4>
+                  </div>
+                  <form id="Confirm-Submit-COIN" action="/account/balance/withdraw" method="POST">
+                     <input type="hidden" name="type" value="STC" />
+                     <div class="modal-body">
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5 data-bind="text:wallet.labelWithdrawalBaseAddress">Ví</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input class="form-control text-left" name="address" type="text" readonly="readonly" value="0"><span class="input-group-addon" >ADDR</span></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Phí giao dịch:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input class="form-control text-left" type="text" readonly="readonly" value="0.03"><span class="input-group-addon" >STC</span></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Tổng:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input class="form-control text-left" name="amount" type="text" readonly="readonly" value="0"><span class="input-group-addon">STC</span></div>
+                           </div>
+                        </div>
+                        <div class="alert alert alert-danger alert-dismissable" style="display: none;"><a class="close" data-dismiss="alert">×</a><span class="message"></span></div>
+                        <input type="hidden" class="token_crt" name="token_crt"> {{#if_eq user.security.two_factor_auth.status '1'}}
+                        <blockquote style="margin: 0px;">
+                           <p style="font-size: 12px;">Bằng cách nhập mã xác thực hai yếu tố của bạn, việc rút tiền của bạn sẽ được xử lý ngay lập tức.</p>
+                        </blockquote>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-10" style="margin-top:10px"><input type="text" name="authenticator" class="form-control" placeholder="6-digit authentication code" style=""></div>
+                        </div>
+                        {{/if_eq}}
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button><button type="submit" class="btn btn-twitter btn-fill confirm_modal_btc">Rút</button></div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div id="modalWithdrawConfirmBTC" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">Xác nhận rút Việt Nam Đồng</h4>
+                  </div>
+                  <form id="Confirm-Submit-BTC" action="/account/balance/withdraw" method="POST">
+                     <input type="hidden" name="type" value="VND" />
+                     <div class="modal-body">
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Ngân hàng:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input type="text" class="form-control amount_usd" name="namebank" ><span class="input-group-addon">NH</span></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Số tài khoản:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input type="text" class="form-control amount_usd" name="numberbank" ><span class="input-group-addon">STK</span></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Tên tài khoản:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input type="text" class="form-control amount_usd" name="horderbank" ><span class="input-group-addon">TTK</span></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Chi nhánh:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input type="text" class="form-control amount_usd" name="branchbank" ><span class="input-group-addon">CN</span></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Phí giao dịch:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input class="form-control text-left" type="text" readonly="readonly" value="5.000"><span class="input-group-addon" >VND</span></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-3">
+                              <h5>Tổng:</h5>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="input-group"><input class="form-control text-left" name="amount" type="text" readonly="readonly" value="0"><span class="input-group-addon">VND</span></div>
+                           </div>
+                        </div>
+                        <input type="hidden" class="token_crt" name="token_crt">
+                        <div class="alert alert alert-danger alert-dismissable" style="display: none;"><a class="close" data-dismiss="alert">×</a><span class="message"></span></div>
+                        {{#if_eq user.security.two_factor_auth.status '1'}}
+                        <blockquote style="margin: 0px;">
+                           <p style="font-size: 12px;">Bằng cách nhập mã xác thực hai yếu tố của bạn, Rút VND sẽ xử lý ngay lập tức.</p>
+                        </blockquote>
+                        <div class="row">
+                           <div class="col-sm-offset-1 col-sm-10" style="margin-top:10px"><input type="text" name="authenticator" class="form-control" placeholder="6-digit authentication code" style=""></div>
+                        </div>
+                        {{/if_eq}}
+                     </div>
+                     <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button><button type="submit" class="btn btn-twitter btn-fill confirm_modal_btc">Rút</button></div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <div class="clearfix"></div>
+      <script src="/static/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
+      <script src="/static/vendors/jquery-ui.min.js" type="text/javascript"></script><script src="/static/vendors/bootstrap.min.js" type="text/javascript"></script><script src="/static/vendors/material.min.js" type="text/javascript"></script><script src="/static/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script><script src="/static/vendors/jquery.bootstrap-wizard.js"></script><script src="/static/vendors/bootstrap-notify.js"></script><script src="/static/vendors/jquery-jvectormap.js"></script><script src="/static/vendors/jquery.datatables.js"></script><script src="/static/vendors/sweetalert/js/sweetalert2.min.js"></script><script src="/static/vendors/sweetalert/js/swal-forms.js"></script><script src="/static/vendors/jasny-bootstrap.min.js"></script><script src="/static/vendors/jquery.tagsinput.js"></script><script src="/static/js/amaze.js"></script><script src="/static/js/demo.js"></script>
+      <script src="/static/js/clipboard.min.js"></script>
+      <script type="text/javascript" src="/js/jqBootstrapValidation.js"></script><script src="/static/js/main.js"></script><script src="/static/js/jstree.min.js"></script><script>var clipboard = new Clipboard('.copy');clipboard.on('success', function(e) { return true;});clipboard.on('error', function(e) {return false;});</script><script src="/static/js/jquery.form.js" type="text/javascript"></script> 
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="/static/js/balance.js"></script>
+      
+      <script src="/js/sweetalert.js"></script> 
+     
+      <script src="/static/js/jquery.toast.js" type="text/javascript"></script>
+      <script type="text/javascript">
+         $('.click_fullsecreen').click(function(e){
+             $('#fullscreen').toggleClass('fullscreen'); 
+         });
+      </script>
+      {{#if_eq menu "support"}} 
+      <script src="/static/js/support.js" type="text/javascript"></script>
+      <script src='https://www.google.com/recaptcha/api.js'></script>
+      {{/if_eq}}
+      <script src="/static/js/support.js" type="text/javascript"></script>
+
+      {{#if_eq menu "login"}} 
+      <script src="/static/js/account.js" type="text/javascript"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+      {{/if_eq}}
+
+      {{#if_eq menu "create"}} 
+      <script src="/static/js/create.js" type="text/javascript"></script>
+      {{/if_eq}}
+      {{#if_eq menu "edit"}} 
+      <script src="/static/js/edit.js" type="text/javascript"></script>
+      {{/if_eq}}
+
+      {{#if_eq menu "dashboard"}} 
+      <script src="/static/exchange/angular.js"></script>
+      <script src="/static/exchange/ui-bootstrap-tpls-0.11.0.js"></script>
+      <script src="/static/js/controller.js"></script>
+      {{/if_eq}}
+      {{#if_eq menu "dashboards"}} 
+      <script src="/static/exchange/angular.js"></script>
+      <script src="/static/exchange/ui-bootstrap-tpls-0.11.0.js"></script>
+      <script src="/static/js/controller.js"></script>
+      {{/if_eq}}
+      {{#if_eq menu "quick"}} 
+      <script src="/static/exchange/angular.js"></script>
+      <script src="/static/exchange/ui-bootstrap-tpls-0.11.0.js"></script>
+      <script src="/static/js/controller.js"></script>
+      {{/if_eq}}
+
+      {{#if_eq menu "offers"}}
+      <script src="/static/js/offers.js" type="text/javascript"></script>
+      {{/if_eq}}
+      {{#if_eq menu "trades"}}
+      <script src="/static/js/trades.js" type="text/javascript"></script>
+      {{/if_eq}}
+      <!--  <script type="text/javascript">
+         $('#myModalss').modal({
+             show: 'true'
+         }); 
+         </script> -->
+   </body>
+</html>

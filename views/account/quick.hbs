@@ -1,0 +1,167 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">Mua bán STC</h1>
+           
+         </div>
+      </div>
+   </div>
+</section>
+<div class="content wallet-balance" style="margin-bottom: 80px;">
+   <div class="container" id="create_finish_offer">
+      <div class="row">
+         <div class="box-body text-left">
+            <div class="tabs">
+               <ul class="nav nav-tabs nav-tabs-customer" id="tab-vnd">
+                  <li class="active"><a data-toggle="tab" href="#BuyNow">Mua ngay</a></li>
+                  <li><a data-toggle="tab" href="#SellNow">Bán ngay</a></li>
+               </ul>
+               <div class="tab-content">
+                 <div id="BuyNow" class="tab-pane fade in active" ng-controller="CtrBuyNow">
+                     <form  class="form open-trade-form" >
+                        <div class="row">
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                 <label class="control-label" data-required="true" for="amount">
+                                    Số lượng STC<span class="required-symbol"> *</span>
+                                 </label>
+                                 <input ng-model="amount_buy" ng-change="change_buy()" type="number" typeahead-wait-ms="1000" class="form-control" autocomplete="off" name="amount" id="amount" value="" required="">
+                              </div>
+                           </div>
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                 <label class="control-label" data-required="true" for="amount">
+                                    Số lượng STC<span class="required-symbol"> *</span>
+                                 </label>
+                                 <select class="form-control" >
+                                    <option>Ví samitano của bạn</option>
+                                 </select>
+                                 
+                              </div>
+                           </div>
+                           
+                        </div>
+                     </form>
+
+
+                     <div class="offers-price-ladder main-container payment-methods">
+                        <div class="text-center" ng-show="loading">
+                            <img style="margin: 0 auto" src="/images/loading_bar.gif">
+                        </div>
+                        <div ng-show="showorder">
+                           <div class="title-accent">
+                              <h3><span>Mua từ</span></h3>
+                           </div>
+                           <ol class="offerlist sell-offers-price-ladders">
+                              <li ng-repeat="row in data | orderBy: 'price'" class="offer ng-animate-disabled">
+                                 <div class="offer-wrapper sell-offer offer-540032">
+                                    <div class="row">
+                                       <div class="col-xs-8">
+                                          <div class="offer-body-meta">
+                                             <div class="offer-body">
+                                                <div class="offer-author"><a href="/profile/{[{(row.username)}]} "><strong class="offer-item-username"><span>{[{(row.username)}]} </span></strong></a></div>
+                                                
+                                             </div>
+                                             <a class="offer-body-meta" href="">
+                                                <div class="offer-body">
+                                                   <span>Tổng số lượng</span><strong class="text-success"> {[{(row.price/100000000) * amount_buy | addCommas}]} VND</strong>
+                                                </div>
+                                                <div class="offer-meta">
+                                                   <span>Tỉ giá</span>
+                                                   <strong class="offer-price text-success">
+                                                      <span>{[{(row.price/100000000) | addCommas}]}VND/</span><span class="text-btc-color">BTC</span>
+                                                   </strong>
+                                                   
+                                                </div>
+                                             </a>
+                                          </div>
+                                       </div>
+                                       <div class="col-xs-4 text-right">
+                                          <a href="/offers/buynow/{[{row._id}]}/{[{amount_buy}]}">
+                                          <button class="btn-buynow " type="submit">Mua Ngay</button></div>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ol>
+                        </div>
+                        <div class=" alert-warning main-container" ng-show="data.length == 0"><span class="text-danger">Không có người nào muốn bán  {[{amount_buy}]} STC. Bạn có thể</span><a style="margin-left: 15px;" class="btn btn-primary btn-create-offer" href="/offers/create#BuySTC"> Tạo quảng cáo</a></div>
+                     
+                     </div>
+                 </div>
+                 <div id="SellNow" class="tab-pane fade" ng-controller="CtrSellNow">
+                     <form  class="form open-trade-form" >
+                        <div class="row">
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                 <label class="control-label" data-required="true" for="amount">
+                                    Số lượng STC<span class="required-symbol"> *</span>
+                                 </label>
+                                 <input ng-model="amount_buy" ng-change="change_buy()" type="number" typeahead-wait-ms="1000" class="form-control" autocomplete="off" name="amount" id="amount" value="" required="">
+                              </div>
+                           </div>
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                 <label class="control-label" data-required="true" for="amount">
+                                    Số lượng STC<span class="required-symbol"> *</span>
+                                 </label>
+                                 <select class="form-control" >
+                                    <option>Ví samitano của bạn</option>
+                                 </select>
+                                 
+                              </div>
+                           </div>
+                           
+                        </div>
+                     </form>
+
+
+                     <div class="offers-price-ladder main-container payment-methods">
+                        <div class="text-center" ng-show="loading">
+                            <img style="margin: 0 auto" src="/images/loading_bar.gif">
+                        </div>
+                        <div ng-show="showorder">
+                           <div class="title-accent">
+                              <h3><span>Bán cho</span></h3>
+                           </div>
+                           <ol class="offerlist sell-offers-price-ladders">
+                              <li ng-repeat="row in data | orderBy: '-price'" class="offer ng-animate-disabled">
+                                 <div class="offer-wrapper sell-offer offer-540032">
+                                    <div class="row">
+                                       <div class="col-xs-8">
+                                          <div class="offer-body-meta">
+                                             <div class="offer-body">
+                                                <div class="offer-author"><a href="/profile/{[{(row.username)}]} "><strong class="offer-item-username"><span>{[{(row.username)}]} </span></strong></a></div>
+                                                
+                                             </div>
+                                             <a class="offer-body-meta" href="">
+                                                <div class="offer-body">
+                                                   <span>Tổng số lượng</span><strong class="text-success"> {[{(row.price/100000000) * amount_buy | addCommas}]} VND</strong>
+                                                </div>
+                                                <div class="offer-meta">
+                                                   <span>Tỉ giá</span>
+                                                   <strong class="offer-price text-success">
+                                                      <span>{[{(row.price/100000000) | addCommas}]}VND/</span><span class="text-btc-color">BTC</span>
+                                                   </strong>
+                                                   
+                                                </div>
+                                             </a>
+                                          </div>
+                                       </div>
+                                       <div class="col-xs-4 text-right">
+                                          <a href="/offers/sellnow/{[{row._id}]}/{[{amount_buy}]}">
+                                          <button class="btn-buynow " type="submit">Bán Ngay</button></div>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ol>
+                        </div>
+                        <div class=" alert-warning main-container" ng-show="data.length == 0"><span class="text-danger">Không có người nào muốn bán  {[{amount_buy}]} STC. Bạn có thể</span><a style="margin-left: 15px;" class="btn btn-primary btn-create-offer" href="/offers/create#BuySTC"> Tạo quảng cáo</a></div>
+                     </div>
+                 </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

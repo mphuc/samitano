@@ -1,0 +1,78 @@
+.cssload-loading i,
+.theme-heading span:before,
+.theme-heading span:after,
+i.heading-pink-circle,
+.service-box:hover .service-icon,
+.itg-button.active,
+.itg-button.two:hover,
+.ui-accordion .ui-accordion-content,
+.team-member figure figcaption,
+.our-facts,
+.pricing .caption,
+.pricing:hover .itg-button.two,
+.blog:hover .caption,
+.top-footer,
+#header.sticky-header{
+	background-color:#167aa5;
+    
+}
+#header.sticky-header{
+   
+    display: none;
+}
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover, .nav .open > a:focus, .nav .open > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover, ul.nav.navbar-nav li a:hover,
+.itg-button.one:hover,
+.theme-heading h2,
+a:hover,
+.service-box:hover a,
+.itg-button.two,
+.testimonial-slider .title,
+.blog-detail a,
+.bottom-footer span,
+.feature-box .feature-icon,
+#scroll-top {
+	color:#167aa5;
+}
+.banner-section:before{
+	background-color:rgba(12, 199, 176,0.9);
+}
+.itg-button.two{
+	border-color:#167aa5;
+}
+.playpause a {
+    -webkit-animation: itg_pulse 2s infinite;
+    animation: itg_pulse 1s infinite;
+    box-shadow:0 0 0 0 hsl(172, 82%, 44%);
+}
+
+@-webkit-keyframes itg_pulse {
+    0% {
+        box-shadow: 0 0 0 15px hsla(172, 82%, 44%, 0.9);
+    }
+    25% {
+        box-shadow: 0 0 0 30px hsla(172, 82%, 44%, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 45px hsla(172, 82%, 44%, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 0 60px hsla(172, 82%, 44%, 0.1);
+    }
+}
+/* Standard syntax */
+
+@keyframes itg_pulse {
+    0% {
+        box-shadow: 0 0 0 15px hsla(172, 82%, 44%, 0.9);
+    }
+    25% {
+        box-shadow: 0 0 0 30px hsla(172, 82%, 44%, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 45px hsla(172, 82%, 44%, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 0 60px hsla(172, 82%, 44%, 0.1);
+    }
+}

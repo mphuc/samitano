@@ -1,0 +1,49 @@
+<div class="head">
+   <div class="logo page_register">
+      <a class="site_logo" href="/" id="logo-home">
+         
+         <img src="/assets/img/logo1.png" alt="logo" class="img-responsive navbar-brand logo1">
+         <img src="/assets/img/logo2.png" alt="logo" class="img-responsive navbar-brand logo2">
+         <img src="/assets/img/logo3.png" alt="logo" class="img-responsive logo3">
+      </a>
+      <h3 style="text-transform: uppercase;color: #fff;font-size: 30px;">SANTA EXCHANGE</h3>
+   </div>
+   <div class="login">
+      <div class="sap_tabs">
+         <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+            <h2 class="text-center">Create Account</h2>
+            <span class="pull-right create_account"></span>
+            <div class="clearfix"></div>
+            <div class="resp-tabs-container">
+               <div class="">
+                  <div class="login-top">
+                     <form id="frmRegister" action="/signUp" method="POST">
+                        <!-- <input type="text" class="name active" placeholder="Username" name="username" /> -->
+                        <input type="text" class="email" placeholder="Email" name="email"/>
+                        <input type="password" class="password" placeholder="Password" id="password_input" name="password"/>  
+                        <input type="password" class="password" placeholder="Confirm Password" name="cfpassword"/>   
+                        <div class="capcha_google">
+                           <div class="g-recaptcha" data-theme="light" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="6LepfzQUAAAAALZ2SnNSFFj4sO4w7GeG0MpRIj77" data-callback="onSubmit" ></div>
+                        </div>
+                        <input type="hidden" name="Sponsor" id="Sponsor" />
+                        <div class="login-bottom login-bottom1">
+                           <div class="submit">
+                              <input type="submit" value="Create Account"/>
+                           </div>
+                           <div class="clear"></div>
+                        </div>
+                  </div>
+               
+                  </form>
+                  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="clear"></div>
+</div>
+<div class="account text-center">
+   <p>Do you already have an account? <a href="/signin">Login account?</a></p>
+   <div class="clear"></div>
+</div>

@@ -1,0 +1,349 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">Ví VND</h1>
+            
+         </div>
+      </div>
+   </div>
+</section>
+<div class="content wallet-balance" style="margin-bottom: 80px;">
+   <div class="container" >
+      <div class="row">
+         <div class="col-md-12">
+            <div class="tabs">
+               <ul class="nav nav-tabs nav-tabs-customer" id="tab-vnd">
+                  <li class="active"><a data-toggle="tab" href="#depositVND"><i class="fa fa-download"></i>  Nạp</a></li>
+                  <li><a data-toggle="tab" href="#withdrawVND"><i class="fa fa-send"></i> Rút</a></li>
+                  <li><a data-toggle="tab" href="#historyVND"><i class="fa fa-files-o"></i> Lịch sử</a></li>
+               </ul>
+
+               <div class="tab-content">
+                 <div id="depositVND" class="tab-pane fade in active">
+
+                 
+                     {{#if_eq deposit false}}
+                     <div class="project-item-inner">
+                        <div class="project-desc">
+                           <h2 class="text-center">Nạp VND</h2>
+                           <form class="form-horizontal generate-fiat-deposit-form" id="Deposit-Vnd" name="form">
+                              <div class="form-group">
+                                 <label for="fiat_amount" class="col-xs-4 control-label">Lượng VND</label>
+                                 <div class="col-xs-7"><input type="text" class="form-control" name="number_vnd"  required="" value="0"></div>
+                              </div>
+                              <div class="form-group">
+                                 <label for="fiat_amount" class="col-xs-4 control-label"></label>
+                                 <div class="col-xs-7"><p class="error"></p></div>
+                              </div>
+                              <input type="hidden" name="token_crt" class="token_crt" value="{{token_crt}}">
+                              <div class="form-group">
+                                 <div class="col-xs-offset-4 col-xs-10 button-container text-left"><button class="btn-generate-fiat-deposit btn btn-primary" type="submit" ><span>Nạp</span></button></div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <div class="project-item-inner" style="margin-top: 40px;">
+                        <div class="project-desc">
+
+                           <div class="box-wrapper list-fiat-deposits">
+                              <div class="box-head">
+                                 <div class="title">Lịch sử nạp VND</div>
+                              </div>
+                              <div class="box-body">
+                                 <div class="content-wrapper">
+                                    <div>
+                                       <div>
+                                          <div class="loading-container text-center">
+                                             <div class="loading-bar"></div>
+                                          </div>
+                                          <div class="main-container">
+                                             <div class="table-responsive" id="table_fiat_deposit_history">
+                                                <div class="text-center loading_bar_vnd_deposit">
+                                                   <img style="margin: 0 auto" src="/images/loading_bar.gif">
+                                                </div>
+                                                <div id="history-deposit-finish-all"></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                     </div>
+
+
+
+
+                     {{else}}
+                     <div class="col-lg-8 col-lg-offset-2">
+                        <div class="panel black-panel">
+                           <div class="panel-heading">
+                              <div class="panel-title text-left">Thông tin nạp tiền</div>
+                           </div>
+                           <table class="table table-bordered table-striped">
+                              <tbody>
+                                 <tr>
+                                    <td class="col-xs-4">
+                                       <span>Số tiền nạp</span>
+                                    </td>
+                                    <td class="col-xs-8 ">
+                                       <strong>
+                                          <span class="safe-copy-currency">
+                                             <span class="delimiterized text-success">{{satoshivns deposit_data.amount}} VND</span>
+                                          </span>
+                                         
+                                       </strong>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="col-xs-4">
+                                       <span>Nội dung chuyển khoản</span>
+                                    </td>
+                                    <td class="col-xs-8"><strong>{{ deposit_data.contentbank}}</strong></td>
+                                 </tr>
+                              </tbody>
+                              <tbody>
+                                 <tr>
+                                    <td class="col-xs-4">
+                                       <span>Tên tài khoản</span>
+                                    </td>
+                                    <td class="col-xs-8 fiat-deposit-field bank_account_name">{{ deposit_data.horderbank}}</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="col-xs-4">
+                                       <span>Số tài khoản</span>
+                                    </td>
+                                    <td class="col-xs-8 fiat-deposit-field bank_account_number">{{ deposit_data.numberbank}}</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="col-xs-4">
+                                       <span>Chi nhánh</span>
+                                    </td>
+                                    <td class="col-xs-8 fiat-deposit-field bank_branch">{{ deposit_data.branchbank}}</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="col-xs-4">
+                                       <span>Tên ngân hàng</span>
+                                    </td>
+                                    <td class="col-xs-8 fiat-deposit-field bank_name">{{ deposit_data.namebank}}</td>
+                                 </tr>
+                                 <tr class="payment-recommendation"></tr>
+                                 <tr>
+                                    <td colspan="2">
+                                       <strong class="text-danger">
+                                          <span>QUAN TRỌNG:</span>
+                                       </strong>
+                                       <em>Samitano nhận hàng ngàn lệnh gửi tiền mỗi ngày. Bạn phải gửi đúng số tiền như hướng dẫn, đúng nội dung chuyển khoản như hướng dẫn để chúng tôi có thể ghi có cho bạn. Bất cứ sai sót nào cũng có thể dẫn đến mất tiền.</em><em>Sau khi bạn gửi thanh toán, hãy cập nhật bằng chứng thanh toán dưới đây để chúng tôi có thể xử lý.</em>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <div class="clearfix"></div>
+                        </div>
+                        <div>
+                           <div class="appendix-functional-button tab-pane">
+                              <div class="panel panel-primary">
+                                 <div class="panel-heading">
+                                    <div class="panel-title">Bằng chứng thanh toán của bạn</div>
+                                 </div>
+                                 <div class="panel-body text-center">
+                                    <div><button class="btn btn-success" id="submit_appendix">Gửi Bằng Chứng thanh toán</button></div>
+                                 </div>
+                              </div>
+                           </div>
+                           
+                        </div>
+                        <div class="line">
+                           <i class="icon-ok"></i><span>Đổi ý? Bạn có thể huỷ lệnh nạp tiền bất kỳ lúc nào.</span><a href="/account/balance/cancel-deposit-vnd">Huỷ lệnh nạp của tôi.</a>
+                        </div>
+                        <div class="line"><i class="icon-ok"></i><span>Xin vui lòng chờ trong vài phút để hệ thống kiểm tra và cập nhật lệnh nạp tiền của bạn.</span></div>
+                        <div class="clearfix"></div>
+                     </div>
+                     <div class="clearfix"></div>
+                     {{/if_eq}}
+                 </div>
+                 <div id="withdrawVND" class="tab-pane fade">
+
+                     
+                     <div class="project-item-inner">
+                        <div class="project-desc">
+                           <div class="form_withdraw_vnd">
+                              <h2 class="text-center">Rút VND</h2>
+                              <form class="form-horizontal generate-fiat-deposit-form" id="Widthdraw-Vnd" name="form">
+                                 
+                                 <div class="form-group">
+                                    <label for="fiat_amount" class="col-xs-4 control-label">Lượng VND</label>
+                                    <div class="col-xs-7"><input type="text" class="form-control" name="amount" required="" value="0">
+                                       <div class="in-help"><span>Số VND rút tối đa: </span><b class="fiat_amount">{{subbalance_vnd user.balance.vnd_wallet.available user.balance.vnd_wallet.available_lock}} VND</b></div>
+                                    </div>
+
+                                 </div>
+                                 
+                                 <div class="form-group">
+                                    <label for="fiat_amount" class="col-xs-4 control-label">Ngân hàng</label>
+                                    <div class="col-xs-7">
+                                    <select class="form-control" name="bank_name" >
+                                       <option value="Vietcombank">Vietcombank</option>
+                                    </select>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="fiat_amount" class="col-xs-4 control-label">Số tài khoản</label>
+                                    <div class="col-xs-7"><input type="text" class="form-control" name="account_number" required="" value="">
+                                    <span style="position: absolute; right: 20px; top: 0; font-size: 25px; line-height: 45px;" class="icon_loading_bank fa fa-spinner fa-pulse fa-3x fa-fw"></span>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="fiat_amount" class="col-xs-4 control-label">Tên tài khoản</label>
+                                    <div class="col-xs-7"><input type="text" class="form-control" name="account_horder" readonly="true" value=""></div>
+                                 </div>
+
+                                 {{#if_eq user.security.two_factor_auth.status '1'}}
+                                 <div class="form-group">
+                                    <label for="fiat_amount" class="col-xs-4 control-label">Mã xác thực</label>
+                                    <div class="col-xs-7"><input type="text" class="form-control" name="authenticator"  value=""></div>
+                                 </div>
+                                 {{/if_eq}}
+                                 <input type="hidden" name="token_crt" class="token_crt" value="{{token_crt}}">
+                                 <div class="form-group">
+                                    <label for="fiat_amount" class="col-xs-4 control-label"></label>
+                                    <div class="col-xs-7"><p class="error"></p></div>
+                                 </div>
+                                 <div class="form-group">
+                                    <div class="col-xs-offset-4 col-xs-10 button-container text-left"><button class="btn-generate-fiat-deposit btn btn-primary" type="submit"><span>Rút</span></button></div>
+                                 </div>
+                              </form>
+                           </div>
+                           <div class="clearfix"></div>
+
+
+                           <div class="col-sm-12 confirm_withdraw_vnd">
+                           <div>
+                              <h4>Kiểm tra và xác minh thông tin rút tiền của bạn</h4>
+                              <div class="row fiat-withdrawal-confirm">
+                                 
+                                 <div class="col-lg-offset-2 col-lg-8">
+                                    <div class="panel black-panel text-left">
+                                       <div class="panel-heading"><span>Thông tin rút tiền</span></div>
+                                       <table class="table table-bordered table-striped">
+                                          <tbody>
+                                             <tr>
+                                                <td class="col-xs-4">
+                                                   <span>Số tiền rút</span>
+                                                </td>
+                                                <td class="col-xs-8 text-success">
+                                                   <strong>
+                                                      <span class="safe-copy-currency" id="amout_withdraw_vnd">
+                                                         
+                                                      </span>
+                                                      
+                                                   </strong>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td class="col-xs-4">
+                                                   <span>Phương thức rút tiền</span>
+                                                </td>
+                                                <td class="col-xs-8" id="bankname_withdraw_vnd">
+                                                  
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td class="col-xs-4">
+                                                   <span>Tên tài khoản</span>
+                                                </td>
+                                                <td class="col-xs-8" id="accouthorder_withdraw_vnd"></td>
+                                             </tr>
+                                             <tr>
+                                                <td class="col-xs-4">
+                                                   <span>Số tài khoản</span>
+                                                </td>
+                                                <td class="col-xs-8" id="accoutnumber_withdraw_vnd"></td>
+                                             </tr>
+                                             <tr>
+                                                <td colspan="2">
+                                                   <strong class="text-danger">
+                                                      <span>QUAN TRỌNG</span>
+                                                   </strong>
+                                                   <i>kiểm tra để đảm bảo thông tin rút tiền chính xác. Bạn chỉ có thể rút tiền vào tài khoản của chính bạn.</i>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                    <div class="buttons"><button class="btn btn-default back_withdraw_vnd_submit"><span>Quay lại</span></button><button class="btn btn-danger confirm_withdraw_vnd_submit"><span>Xác nhận</span></button></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+
+
+
+                        </div>
+                        <div class="clearfix"></div>
+
+                     </div>
+                     
+
+                     <div class="project-item-inner" style="margin-top: 40px;">
+                        <div class="project-desc">
+
+                           <div class="box-wrapper list-fiat-deposits">
+                              <div class="box-head">
+                                 <div class="title">Lịch sử rút VND</div>
+                              </div>
+                              <div class="box-body">
+                                 <div class="content-wrapper">
+                                    <div>
+                                       <div>
+                                          <div class="loading-container text-center">
+                                             <div class="loading-bar"></div>
+                                          </div>
+                                          <div class="main-container">
+                                             <div class="table-responsive" id="table_fiat_deposit_history">
+                                                <div class="text-center loading_bar_vnd_withdraw">
+                                                   <img style="margin: 0 auto" src="/images/loading_bar.gif">
+                                                </div>
+                                                <div id="withdraw-finish-all-vnd"></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                     </div>
+
+                 </div>
+                 <div id="historyVND" class="tab-pane fade">
+                     <div class="text-center loading_bar_vnd">
+                        <img style="margin: 0 auto" src="/images/loading_bar.gif">
+                     </div>
+                     <div class="history_loading_vnd" style="display: none;">
+                         <div class="col-md-12">
+                           <h4 style="font-weight: 500" class="text-center">LỊCH SỬ NẠP</h4>
+                           <div id="history-deposit-finish"></div>
+                        </div>
+                        <div class="col-md-12">
+                           <h4 style="font-weight: 500" class="text-center">LỊCH SỬ RÚT</h4>
+                           <div id="history-withdraw-finish"></div>
+                        </div>
+                     </div>
+                     <div class="clearfix"></div>
+                 </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

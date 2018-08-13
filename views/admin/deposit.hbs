@@ -1,0 +1,76 @@
+<div class="content">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="card">
+               <div class="content">
+                  <div class="material-datatables">
+                     <table border="0" cellspacing="5" cellpadding="5">
+                        <tr>
+                           <td>Start date:</td>
+                           <td><input type="text" class="form-control" placeholder="month-day-year hour:min AM" id="min" name="min"></td>
+                           <td>ex: 01/24/2018 12:35 AM</td>
+                        </tr>
+                        <tr>
+                           <td>End date:</td>
+                           <td><input type="text" class="form-control" placeholder="month-day-year hour:min AM" id="max" name="max"></td>
+                           <td>ex: 01/24/2018 12:35 AM</td>
+                        </tr>
+                     </table>
+                     <table id="datatables_deposit" class="table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0">
+                        <thead>
+                           <tr>
+                              <th>Username</th>
+                              <th>Date</th>
+                              <th>Amount</th>
+
+                              <th>Type</th>
+
+                              <th>Wallet</th>
+                              <th>Status</th>
+                              <th>Txid</th>
+
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {{#each history}} 
+                           <tr>
+                              <td>{{this.username}}</td>
+                              <td>{{formatDate this.date "MM/DD/YYYY LT"}} </td>
+                              <td >{{satoshi this.amount}}</td>
+
+                              <td>{{this.type}}</td>
+
+                              <td>{{this.wallet}}</td>
+                              <td>
+                                 {{#if_eq this.status '1'}}
+                                    <span class="label label-success">Success</span>
+                                 {{/if_eq}}
+
+                                 {{#if_eq this.status '0'}}
+                                    <span class="label label-warning">Pendding</span>
+                                 {{/if_eq}} 
+                              <td>
+                                 {{#if_eq this.type 'VND'}}
+                                    {{#if_eq this.status '0'}}
+                                     <a onclick="return confirm('Bạn có chắc chắn với lựa chọn của mình ?')" href="/qwertyuiop/admin/deposit/deposit-recieve?id={{this._id}}"><span class="label label-success">
+                                     Đã nhận
+                                    </span></a>
+                                    {{/if_eq}}
+                                 {{/if_eq}}
+                                 {{#if_eq this.type 'STC'}}
+                                    {{this.txid}}
+                                 {{/if_eq}}
+
+                              </td>
+                           </tr>
+                           {{/each}} 
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

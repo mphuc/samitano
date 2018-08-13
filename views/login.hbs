@@ -1,0 +1,58 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">ĐĂNG NHẬP</h1>
+            
+         </div>
+      </div>
+   </div>
+</section>
+<div class="row">
+   <div class="container alert_register">
+      <div class="col-sm-12">
+         <div class="alert-info fade-and-collapsen">
+            <span>
+               <span>
+                  Chúng tôi đã gửi liên kết để đăng nhập vào <strong class="email"></strong>. Bấm vào nút bên trong email để xác thực email. Kiểm tra cả hộp thư rác nếu bạn không tìm thấy email trong hộp thư chính.
+               </span>
+            </span>
+         </div>
+      </div>
+   </div>
+   <div class="container alert_changepassword">
+      <div class="col-sm-12">
+         <div class="alert-info fade-and-collapsen">
+            <span>
+               <span>
+                  Mật khẩu của bạn được thay đổi thành công.
+               </span>
+            </span>
+         </div>
+      </div>
+   </div>
+   <div class="cleafix">
+   <div class="col-sm-4 col-sm-push-4">
+      <form class="form login-form" id="frmLogin">
+         <div class="form-group form-grop__icon">
+            <i class="fa fa-envelope-o"></i>
+            <div class="remi-colorized-field ">
+               <input class="form-control" type="text" name="email" value="" placeholder="Nhập email của bạn">
+               <span class="error"></span>
+               <div></div>
+            </div>
+         </div>
+         <div class="form-group form-grop__icon">
+            <i class="fa fa-key"></i>
+            <div class="remi-colorized-field ">
+               <input class="form-control" type="password" name="password" value="" placeholder="Nhập mật khẩu của bạn">
+               <span  class="error"></span>
+               <div></div>
+            </div>
+         </div>
+         <input type="hidden" class="token_crt" name="token" value="{{token}}">
+         <div class="form-group"><button class="btn btn-block btn-primary btn-continue" type="submit"><span>Đăng nhập</span></button></div>
+         <p><a style="color: #1b334d; font-size: 14px; font-style: italic; float: right;" href="/forgot-password">Quên mật khẩu?</p>
+      </form>
+   </div>
+</div>

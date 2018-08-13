@@ -1,0 +1,201 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">GIAO DỊCH #{{trades.code}}</h1>
+           
+         </div>
+      </div>
+   </div>
+</section>
+<div class="content wallet-balance" style="margin-bottom: 80px;">
+   <div class="container page_trades">
+   <div>
+
+      {{#if_eq trades.status '0'}}
+      <div class="main-container">
+         <div class="row">
+            <div class="col-lg-offset-1 col-lg-10">
+               <div class="buyer-perspective">
+                  <div class="trade-guide">
+                     <div class="icon-box circled icon-box-animated animation fadeInLeft animation-visible">
+                        <div class="icon unpaid" data-ng-class="vm.trade.status"><i class="fa fa-lock" data-ng-class="vm.tradeIcon()"></i></div>
+                        <div class="icon-box-body">
+                           <div class="step-row">
+                              <ul class="nav nav-wizard customer">
+                               <li class="finish"><a >1. Khởi tạo giao dịch</a></li>
+                               <li class="active"><a >2. Xác nhận thanh toán</a></li>
+                               <li><a >3. Nhận VND</a></li>
+                             </ul>
+                           </div>
+                           <div>
+                              <div>
+                                 <h3><strong class="text-success">Xác nhận thanh toán</strong></h3>
+                                 <div>
+                                    <span>
+                                       <span>Bạn đang bán</span>
+                                       <span class="currency-amount">
+                                          <span class="badge badge-warning btc">{{satoshi trades.quantity}} STC
+                                          </span>
+                                         
+                                       </span>
+                                       <span>cho</span><a href="/profile/{{trades.username_sell}}"><strong><u> {{trades.username_sell}} </u></strong></a><span>VND</span><span> của người mua đã được khoá lại để đảm bảo cho giao dịch này.</span><span>Chọn <b>"Xác nhận bán"</b> để hoàn thành giao dịch, chọn <b>"Hủy bỏ giao dịch"</b> để hủy giao dịch.</span>
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               
+               <br>
+               
+               <input type="hidden" name="time_countdow" value="{{subdate}}">
+               <div class="alert-danger fade-and-collapse text-center ">
+                  <i class="fa fa-clock"></i><span>Thời gian còn lại để thanh toán</span>
+                  <div><span class="timer"><span class="timer huge"><span class="base">00:14:50</span></span></span></div>
+                  <div><em>Hết thời gian thanh toán giao dịch sẽ bị huỷ và chúng tôi sẽ gửi Santacoin trả lại cho người bán</em></div>
+               </div>
+
+               <div>
+                  <form class="cash-deposit-proof-dialog-form" name="proof_form" novalidate="">
+                  
+                  <div class="functional-buttons">
+                     <div class="buyer unpaid">
+                        <div class="col-md-12">
+                           <div class="text-center">
+                              <a href="/trades-sell/confirm/{{trades._id}}">
+                              <button type="button" class="btn-cancel-trade btn btn-success btn btn-success">
+                                Xác nhận bán
+                              </button>
+                              </a>
+                              <a href="/trades-sell/cancel/{{trades._id}}">
+                              <button type="button" class="btn-cancel-trade btn btn-danger btn btn-danger">
+                                Hủy bỏ giao dịch
+                              </button>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  </form>
+               </div>
+               <br>
+               <div>
+                  
+               </div>
+               
+            </div>
+         </div>
+      </div>
+      {{/if_eq}}
+      <!--  -->
+      {{#if_eq trades.status '8'}}
+      <div class="main-container">
+         <div class="row">
+            <div class="col-lg-offset-1 col-lg-10">
+               <div class="buyer-perspective">
+                  <div class="trade-guide">
+                     <div class="icon-box circled icon-box-animated animation fadeInLeft animation-visible">
+                        <div class="icon unpaid cancel" data-ng-class="vm.trade.status"><i class="fa fa-times" ></i></div>
+                        <div class="icon-box-body">
+                           <div class="step-row">
+                              <ul class="nav nav-wizard customer">
+                               <li class="finish"><a >1. Khởi tạo giao dịch</a></li>
+                               <li class="active"><a >2. Xác nhận thanh toán</a></li>
+                               <li><a >3. Nhận VND</a></li>
+                             </ul>
+                           </div>
+                           <div>
+                              <div>
+                                 <h3><strong class="" style="color: #807d7a">GIAO DỊCH ĐÃ HỦY</strong></h3>
+                                 <div>
+                                    <span>
+                                       <span>Giao dịch</span>
+                                       <span class="currency-amount">
+                                          <span class="badge badge-warning btc">
+                                             {{satoshi trades.quantity}} STC
+                                          </span>
+                                          
+                                       </span>
+                                       <span>với </span><a href="/profile/{{trades.username_sell}}"><strong><u> {{trades.username_sell}} </u></strong></a>đã bị huỷ.</span>
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
+                          
+                        </div>
+                     </div>
+                  </div>
+               </div>
+              
+               <br>
+               
+               <br>
+               <div>
+                  
+               </div>
+               
+            </div>
+         </div>
+      </div>
+      <!--  -->
+
+      {{/if_eq}}
+      <!--  -->
+      {{#if_eq trades.status '2'}}
+      <!--  -->
+
+      <div class="main-container">
+         <div class="row">
+            <div class="col-lg-offset-1 col-lg-10">
+               <div class="buyer-perspective">
+                  <div class="trade-guide">
+                     <div class="icon-box circled icon-box-animated animation fadeInLeft animation-visible">
+                        <div class="icon unpaid finish" data-ng-class="vm.trade.status"><i class="fa fa-check" ></i></div>
+                        <div class="icon-box-body">
+                           <div class="step-row">
+                              <ul class="nav nav-wizard customer">
+                               <li class="finish"><a >1. Khởi tạo giao dịch</a></li>
+                               <li class="finish"><a >2. Xác nhận thanh toán</a></li>
+                               <li class="finish"><a >3. Nhận VND</a></li>
+                             </ul>
+                           </div>
+                           <div>
+                              <div>
+                                 <h3><strong class="text-success">GIAO DỊCH HOÀN TẤT</strong></h3>
+                                 <div>
+                                    <span>
+                                       <span>Bạn đã nhận được</span>
+                                       <span class="currency-amount">
+                                          <span class="badge badge-warning btc">
+                                             {{satoshi trades.quantity}} STC
+                                          </span>
+                                       </span>
+                                       <span>từ</span><a href="/profile/{{trades.username_sell}}"><strong><u> {{trades.username_sell}} </u></strong></a>
+                                    </span>
+                                 </div>
+                                 <div class="trade-coin-withdrawal"><div><span><span>VND đã được ghi có vào tài khoản VND của bạn.</span><a class="btn btn-primary btn-view-balance" href="/balance/stc">Xem số dư của bạn</a></span></div></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+              
+               <br>
+               
+               <br>
+               <div>
+                  
+               </div>
+               
+            </div>
+         </div>
+      </div>
+      <!--  -->
+      {{/if_eq}}
+   </div>
+</div>
+</div>

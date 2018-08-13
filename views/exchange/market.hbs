@@ -1,0 +1,713 @@
+  <div class="content exchange-page">
+  <input type="hidden" id="_NAMECOIN_" value="{{namecoin}}" name="">
+  <input type="hidden" id="_EXCHANGE_" value="{{exchange}}" name="">
+  <input type="hidden" id="_ID_" value="{{user._id}}" name="">
+   <div class="container-fluid" >
+      <div class="row">   
+      <!-- <div class="click_fullsecreen" style="position: relative;z-index: 99999999;position: absolute;top: 25px; left: 30px;font-size: 20px;cursor: pointer;"><i class="fa fa-arrows-alt" aria-hidden="true"></i></div> -->
+       <div class="col-md-8" id="fullscreen">
+
+          <div class="card" style="height: 535px; width: 100%; overflow: hidden;">
+              <iframe id="ifrm" style="width: 100%; height: 100%; border: none;" src="/Market/load-chart/{{namecoin}}-{{exchange}}"></iframe> 
+          </div>
+       </div>
+       <div class="col-md-4" >
+       <div class="row Volume_exchange hidden_js" ng-controller="CtrVolume">
+        <div class="">
+          <div class="card" style="padding: 15px 0 5px 0; margin-top: 50px;">
+          <div class="" style="padding: 10px;font-size: 25px;font-weight: bold; margin-bottom: 7px;color: #232323;">
+            Santacoin
+          </div>
+          <table class="table table-market-trade" style="margin-bottom:0px;padding: 0 0 20px 0">
+              <tbody>
+                  <tr ng-if="CompareNumber(Volume.last,Volume.last_last) == 'equal'" class="equal">
+                      <td class="td-market-trade td-market-label" style="border: none;">
+                          Giá hiện tại
+                      </td>
+                      <td class="td-market-trade text-right" style="border: none;">
+                       <!--  <div>
+                          <span class="usd">$ {[{ (usd*(Volume.last/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                           <i class="fa fa-btc"></i> <span >
+                           <span id="price_Last_exchange">
+
+                           {[{(Volume.last/100000000) | addCommas}]}
+                           </span>
+                            {{namecoin}} <i class="fa fa-minus" aria-hidden="true"></i></span>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr ng-if="CompareNumber(Volume.last,Volume.last_last) == 'down'" class="down">
+                      <td class="td-market-trade td-market-label" style="border: none;">
+                          Giá hiện tại
+                      </td>
+                      <td class="td-market-trade text-right" style="border: none;">
+                       <!--  <div>
+                          <span class="usd">$ {[{ (usd*(Volume.last/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                           <i class="fa fa-btc"></i> <span >
+                           <span id="price_Last_exchange">
+                           {[{(Volume.last/100000000) | addCommas}]}
+                           </span>
+                            {{namecoin}} <i class="fa fa-arrow-down"></i></span>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <tr ng-if="CompareNumber(Volume.last,Volume.last_last) == 'up'" class="up">
+                      <td class="td-market-trade td-market-label" style="border: none;">
+                          Giá hiện tại
+                      </td>
+                      <td class="td-market-trade text-right" style="border: none;">
+                      <!-- <div>
+                        <span class="usd">$ {[{ (usd*(Volume.last/100000000)).toFixed(2) }]}</span>
+                      </div> -->
+                      <div>
+                        <i class="fa fa-btc"></i>  <span >
+                       
+                        <span id="price_Last_exchange">
+                        
+                        {[{(Volume.last/100000000) | addCommas}]}
+                        </span>
+                         {{namecoin}} <i class="fa fa-arrow-up"></i></span>
+                      </div>
+                      </td>
+                  </tr>
+                  <!--  -->
+                  
+                  <tr ng-if="CompareNumber(Volume.bid,Volume.bid_last) == 'equal'" class="equal">
+                      <td class="td-market-label">Giá mua</td>
+                      <td class="text-right">
+                        <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.bid/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                         <i class="fa fa-btc"></i> <span>
+                         <span id="price_Bid_exchange">
+                         {[{(Volume.bid/100000000) | addCommas}]}
+                         </span>
+                          {{namecoin}} <i class="fa fa-minus" aria-hidden="true"></i></span>{[{parseInt(Volume.bid_last)}]}
+                        </div>
+                      </td>
+                  </tr>
+
+                  <tr ng-if="CompareNumber(Volume.bid,Volume.bid_last) == 'down'" class="down">
+                      <td class="td-market-label">Giá mua</td>
+                      <td class="text-right">
+                        <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.bid/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                         <i class="fa fa-btc"></i> <span>
+                         <span id="price_Bid_exchange">
+                         {[{(Volume.bid/100000000) | addCommas}]}
+                         </span>
+                          {{namecoin}} <i class="fa fa-arrow-down"></i></span>
+                        </div>
+                      </td>
+                  </tr>
+
+                  <tr ng-if="CompareNumber(Volume.bid,Volume.bid_last) == 'up'" class="up">
+                      <td class="td-market-label">Giá mua</td>
+                      <td class="text-right">
+                     <!--  <div>
+                          <span class="usd">$ {[{ (usd*(Volume.bid/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                        <i class="fa fa-btc"></i>  <span>
+                        <span id="price_Bid_exchange">
+                        {[{(Volume.bid/100000000) | addCommas}]}
+                        </span>
+                         {{namecoin}} <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                      </td>
+                  </tr>
+
+
+                  <!--  -->
+                  <tr ng-if="CompareNumber(Volume.hight,Volume.hight_last) == 'equal'" class="equal">
+                      <td class="td-market-label">
+                          Lớn nhất 24h
+                       </td>
+                      <td class="text-right">
+                       <!--  <div>
+                          <span class="usd">$ {[{ (usd*(Volume.hight/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                         <i class="fa fa-btc"></i> <span>{[{(Volume.hight/100000000) | addCommas}]} {{namecoin}} <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </div>
+                      </td>
+                  </tr>
+
+                  <tr ng-if="CompareNumber(Volume.hight,Volume.hight_last) == 'down'" class="down">
+                      <td class="td-market-label">
+                          Lớn nhất 24h
+                       </td>
+                      <td class="text-right">
+                        <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.hight/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                          <i class="fa fa-btc"></i> <span>{[{(Volume.hight/100000000) | addCommas}]} {{namecoin}} <i class="fa fa-arrow-down"></i></span>
+                        </div>
+                      </td>
+                  </tr>
+
+                  <tr ng-if="CompareNumber(Volume.hight,Volume.hight_last) == 'up'" class="up">
+                      <td class="td-market-label">
+                          Lớn nhất 24h
+                       </td>
+                      <td class="text-right">
+                        <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.hight/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                         <i class="fa fa-btc"></i> <span>{[{(Volume.hight/100000000) | addCommas}]} {{namecoin}} <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                      </td>
+                  </tr>
+                
+                <tr style="border-top: 1px solid #ddd;" ng-if="CompareNumber(Volume.volume,Volume.volume_last) == 'equal'" class="equal">
+                    <td style="" class="td-market-trade td-market-label">
+                        Giao dịch
+                    </td>
+                    <td style="" class="text-right td-market-trade">
+                      <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.volume/100000000 + 10)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                        <i class="fa fa-btc"></i> <span >{[{(Volume.volume/100000000 + 10) | addCommas}]} {{namecoin}} <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-if="CompareNumber(Volume.volume,Volume.volume_last) == 'down'" class="down">
+                    <td style="" class="td-market-trade td-market-label">
+                        Giao dịch
+                    </td>
+                    <td style="" class="text-right td-market-trade">
+                      <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.volume/100000000 + 10)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                       <i class="fa fa-btc"></i> <span >{[{(Volume.volume/100000000 + 10) | addCommas}]} {{namecoin}} <i class="fa fa-arrow-down"></i></span>
+                      </div>
+                    </td>
+                </tr>
+                <tr  ng-if="CompareNumber(Volume.volume,Volume.volume_last) == 'up'" class="up">
+                    <td style="" class="td-market-trade td-market-label">
+                        Giao dịch
+                    </td>
+                    <td style="" class="text-right td-market-trade">
+                      <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.volume/100000000 + 10)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                        <i class="fa fa-btc"></i> <span >{[{(Volume.volume/100000000 + 10) | addCommas}]} {{namecoin}} <i class="fa fa-arrow-up"></i></span>
+                      </div>
+                    </td>
+                </tr>
+                <!--  -->
+                <tr ng-if="CompareNumber(Volume.ask,Volume.ask_last) == 'equal'" class="equal">
+                    <td class="td-market-label">Giá mua</td>
+                    <td class="text-right">
+                      <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.ask/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                        <i class="fa fa-btc"></i> <span >
+                        <span id="price_Ask_exchange">
+                          {[{(Volume.ask/100000000) | addCommas}]}
+                        </span>
+                         {{namecoin}} <i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </div>
+                     </td>
+                </tr>
+                <tr ng-if="CompareNumber(Volume.ask,Volume.ask_last) == 'down'" class="down">
+                    <td class="td-market-label">Giá mua</td>
+                    <td class="text-right">
+                      <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.ask/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                       <i class="fa fa-btc"></i> <span >
+                       <span id="price_Ask_exchange">
+                       {[{(Volume.ask/100000000) | addCommas}]}
+                       </span>
+                        {{namecoin}} <i class="fa fa-arrow-down"></i></span>
+                      </div>
+                     </td>
+                </tr>
+                <tr ng-if="CompareNumber(Volume.ask,Volume.ask_last) == 'up'" class="up">
+                    <td class="td-market-label">Giá mua</td>
+                    <td class="text-right">
+                      <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.ask/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                        <i class="fa fa-btc"></i> <span >
+                        <span id="price_Ask_exchange">
+                        {[{(Volume.ask/100000000) | addCommas}]}
+                        </span>
+                         {{namecoin}} <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                     </td>
+                </tr>
+                <!--  -->
+                <tr ng-if="CompareNumber(Volume.low,Volume.low_last) == 'equal'" class="equal">
+                    <td class="td-market-label">Thấp nhất 24h</td>
+                    <td class="text-right">
+                      <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.low/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                       <i class="fa fa-btc"></i> <span >{[{(Volume.low/100000000) | addCommas}]} {{namecoin}} <i class="fa fa-minus" aria-hidden="true"></i></span>
+                       </div>
+                    </td>
+                </tr>
+
+                <tr ng-if="CompareNumber(Volume.low,Volume.low_last) == 'down'" class="down">
+                    <td class="td-market-label">Thấp nhất 24h</td>
+                    <td class="text-right">
+                     <!--  <div>
+                          <span class="usd">$ {[{ (usd*(Volume.low/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                       <i class="fa fa-btc"></i> <span >{[{(Volume.low/100000000) | addCommas}]} {{namecoin}} <i class="fa fa-arrow-down"></i></span>
+                      </div>
+                    </td>
+                </tr>
+
+                <tr ng-if="CompareNumber(Volume.low,Volume.low_last) == 'up'" class="up">
+                    <td class="td-market-label">Thấp nhất 24h</td>
+                    <td class="text-right">
+                    <!-- <div>
+                          <span class="usd">$ {[{ (usd*(Volume.low/100000000)).toFixed(2) }]}</span>
+                        </div> -->
+                        <div>
+                       <i class="fa fa-btc"></i> <span >{[{(Volume.low/100000000) | addCommas}]} {{namecoin}} <i class="fa fa-arrow-up"></i></span>
+                      </div>
+                    </td>
+                </tr>
+    
+               
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+       </div>
+
+
+
+      <div class="row">
+         <div class="col-md-12" >
+            <div class="row" ng-controller="CtrBalanceUser">
+               <div class="col-sm-6">
+                  <div class="card" style="border: 1px solid #d8d8d8">
+                     <div class="panel-heading">
+                        <table style="width:100%; ">
+                           <tbody>
+                              <tr>
+     
+                                  <td><h4 class="title pull-left" style="color: #46a656; font-weight: bold;">Mua {{exchange}}</h4></td>
+                                 {{#if has_login}}
+                                  <td style="width: 70%; text-align: right">Số dư tài khoản: <span id="availableBaseCurrency_exchange" ></span>  {{namecoin}}</td>
+                                 {{/if}}
+                                 
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="panel-body" id="scroll_buy" style="min-height: 235px;">
+                        <form role="form" class="form-horizontal" id="form_Buy_exchange" novalidate="novalidate">
+                          <input type="hidden" class="token_crt" name="token_crt">
+                          <input type="hidden" name="MarketName" value="{{MarketName}}" />
+                           <div class="form-group">
+                              <label for="quantity_Buy" class="col-md-2 control-label">Đơn vị</label> 
+                              <div class="col-md-10 controls">
+                                 <div class="input-group"> <span class="input-group-btn"> <button class="btn btn-primary" style="width:100px;" type="button" ng-click="Max_buy()">Lớn nhất</button> </span> 
+                                 <input type="text" class="form-control text-right" value="0.00000000" name="quantity_Buy"> <span class="input-group-addon">{{exchange}}</span> </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="price_Buy" class="col-md-2 control-label">Giá mua</label> 
+
+
+
+                              <div class="col-md-10 controls">
+                                 <div class="input-group">
+                                    <div class="input-group-btn" style="width: 100px">
+                                     <div class="dropdown">
+                                        <button style="width: 100%;border-right: none; border-radius: 0;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Giá
+                                        <!-- <span class="caret"></span> --></button>
+                                        <ul class="dropdown-menu">
+                                          <li><a ng-click="Price_last_buy()" href="javascript:void(0)">Last</a></li>
+                                          <li><a ng-click="Price_bid_buy()" href="javascript:void(0)">Bid</a></li>
+                                          <li><a ng-click="Price_ask_buy()" href="javascript:void(0)">Ask</a></li>
+                                        </ul>
+
+                                        <!-- <button style="width: 100%" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"  ng-click="Price_bid_buy()">Bid
+                                        </button> -->
+                                        
+                                      </div>
+                                    </div>
+                                    <input type="text" class="form-control text-right" name="price_Buy" value="0.00000000"> <span class="input-group-addon" >{{namecoin}}</span> 
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-2 control-label " for="total_Buy" data-toggle="tooltip" data-placement="top" title="Total with .25% commission">Tổng</label> 
+                              <div class="col-md-10">
+                                 <div class="input-group">
+                                    <div class="input-group-btn"> <button class="btn btn-primary " style="width:100px;" type="button" ><i class="fa fa-btc"></i></button> </div>
+                                    <input type="text" class="form-control text-right"  value="0.00000000" name="total_Buy"> <span class="input-group-addon" >{{namecoin}}</span> 
+                                 </div>
+                                 <span id="total_Buy-error" style="display: none;" class="help-block">Kích thước đơn đặt hàng tối thiểu là 0.00050000</span>
+                              </div>
+                           </div>
+                          
+                           {{#if has_login}}
+                           <div class="col-md-12"> <button type="submit" class="btn btn-primary center-block btn-exchnage" style="width:200px; margin-top:10px;background: #46a656; border:none"><i class="fa fa-plus"></i>&nbsp; MUA {{exchange}}</button> </div>
+                           {{/if}}
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+                  <div class="card"  style="border: 1px solid #d8d8d8">
+                     <div class="panel-heading">
+                        <table style="width:100%">
+                           <tbody>
+                              <tr>
+                                 <td><h4 class="title pull-left" style="color: #e66653; font-weight: bold;">Bán {{exchange}}</h4></td>
+                                  
+                                 
+                                 {{#if has_login}}
+                                  <td style="width: 70%; text-align: right">Số dư tài khoản:  <span id="availableBaseCurrency_namecoin" ></span> {{exchange}}</td>
+                                 {{/if}}
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+
+
+                     <div class="panel-body" id="scroll_sell" style="min-height: 235px;">
+                      
+                        <form role="form" class="form-horizontal" id="form_Sell_exchange" novalidate="novalidate">
+                           <div class="form-group">
+                              <label for="quantity_Buy" class="col-md-2 control-label">Đơn vị</label> 
+                              <div class="col-md-10 controls">          
+                                 <div class="input-group"> <span class="input-group-btn"> <button class="btn btn-primary sell" style="width:100px;" type="button" ng-click="Max_sell()">Lớn nhất</button> </span> <input type="text" class="form-control text-right" value="0.00000000" name="quantity_Buy"> <span class="input-group-addon">{{exchange}}</span> </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="price_Buy" class="col-md-2 control-label">Giá bán</label> 
+                              <div class="col-md-10 controls">
+                                 <div class="input-group">
+                                    <div class="input-group-btn" style="width: 100px">
+                                     <div class="dropdown">
+                                        <!-- <button style="width: 100%" class="btn btn-primary sell dropdown-toggle" type="button" data-toggle="dropdown"  ng-click="Price_ask_sell()">Ask
+                                        </button> -->
+                                        
+
+                                        <button style="width: 100%;border-right: none; border-radius: 5px 0 0 5px;    background: #1b334d;color: #fff;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Giá
+                                        <!-- <span class="caret"></span> --></button>
+                                        <ul class="dropdown-menu">
+                                          <li><a ng-click="Price_last_sell()" href="javascript:void(0)">Last</a></li>
+                                          <li><a ng-click="Price_bid_sell()" href="javascript:void(0)">Bid</a></li>
+                                          <li><a ng-click="Price_ask_sell()" href="javascript:void(0)">Ask</a></li>
+                                        </ul>
+
+
+                                      </div>
+                                    </div>
+                                    <input type="text" class="form-control text-right" name="price_Buy" value="0.00000000"> <span class="input-group-addon">{{namecoin}}</span> 
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-md-2 control-label" for="total_Buy" >Tổng</label> 
+                              <div class="col-md-10">
+                                 <div class="input-group">
+                                    <div class="input-group-btn"> <button class="btn btn-primary sell" style="width:100px;" type="button" ><i class="fa fa-btc"></i></button> </div>
+                                    <input type="text" class="form-control text-right"  value="0.00000000" name="total_Buy"> <span class="input-group-addon">{{namecoin}}</span> 
+                                 </div>
+                                 <span id="total_Sell-error" style="display: none;" class="help-block">Kích thước đơn đặt hàng tối thiểu là 0.00050000</span>
+                              </div>
+                           </div>
+                           
+                           
+
+
+                           {{#if has_login}}
+                           <div class="col-md-12"> <button type="submit" class="btn btn-primary center-block btn-exchnage" style="background: #cc5b49;
+    border-color:#cc5b49;width:200px; margin-top:10px;color: #fff; border:1px solid #cc5b49"><i class="fa fa-minus"></i>&nbsp; BÁN {{exchange}}</button> </div>
+                           {{/if}}
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 hidden_js" ng-controller="CtrOrderBuy">
+            <div class="card" >
+               <div class="content">
+                  <h4 class="title pull-left">LỆNH BÁN</h4>
+                  <div class="pull-right" style="margin-top: 5px;"><span style="line-height: 30px; margin-right: 5px" class="pull-left">Hiển thị</span>
+                    <select style="width: 70px; height: 30px;" class="form-control pull-left" ng-model="viewby" ng-change="setItemsPerPage(viewby)">
+                      <option>10</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>  
+
+                    <span style="line-height: 30px; margin-left: 5px" class="pull-left">dòng</span>
+                  </div>
+
+
+
+                 <div class="table-exchanges" >
+                   <table border="1" cellpadding="0" cellspacing="0"  style="border-collapse:collapse;"  class="table table-striped table-bordered table-hover"  >
+                       <thead>
+                          <tr>
+                            {{#if has_login}}
+                              <th class="text-center"><i class="fa fa-plus"></i></th>
+                            {{/if}}
+                             <th class="text-left">Tổng</th>
+                             <th class="text-right">Số lượng ({{exchange}}) </th>
+                             <th class="text-right">Giá mua ({{namecoin}})</th>
+                             <!-- <th><i class="fa fa-star"></i></th> -->
+                          </tr>
+                       </thead>
+                       
+                       <tbody> 
+                      
+                          <tr ng-repeat="row in data | orderBy: '-price/10000000' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)" >
+                            {{#if has_login}}
+                              <td class="text-center"><i class="fa fa-plus" ng-click="ClickBuyOrder(row.total+'_'+row.quantity+'_'+row.price)"></i></td>
+                            {{/if}}
+                            <td class="text-left" ng-click="ClickBuyForm(row.quantity+'_'+row.price)">{[{(row.total/100000000) | addCommas}]}</td>
+                            <td class="text-right" ng-click="ClickBuyQuantityForm(row.quantity)">{[{(row.quantity/100000000).toFixed(8)}]}</td>
+                            <td class="text-right" ng-click="ClickBuyPriceForm(row.price)">{[{(row.price/100000000) | addCommas}]}</td>
+                            <!-- <td ng-if="row.user_id == user_id"><i class="fa fa-star"></i></td>
+                            <td ng-if="row.user_id != user_id"></td> -->
+                          </tr>
+                          <tr >
+                            <td style="text-align: center;" class="text-center" colspan="4" ng-show="data.length == 0">Không có dữ liệu</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                    <div class="pull-left">{[{data | sumOfValue:'quantity'}]} {{exchange}}</div>
+                    <div class="pull-right">{[{data | sumOfValue:'total'}]} {{namecoin}}</div>
+                    <div class="clearfix"></div>
+                    <pagination class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize"  class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+                    <div class="clearfix"></div>
+                 </div>
+              </div>
+            </div>
+         </div>
+         <div class="col-md-6 hidden_js" ng-controller="CtrOrderSell">
+            <div class="card">
+               <div class="content">
+                  <h4 class="title pull-left">LỆNH MUA</h4>
+                  <div class="pull-right" style="margin-top: 5px;"><span style="line-height: 30px; margin-right: 5px" class="pull-left">Hiển thị</span>
+                    <select style="width: 70px; height: 30px;" class="form-control pull-left" ng-model="viewby" ng-change="setItemsPerPage(viewby)">
+                      <option selected="selected">10</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>  
+                    <span style="line-height: 30px; margin-left: 5px" class="pull-left">Dòng</span>
+                  </div>
+                  <div class="table-exchanges" >
+                   <table border="1" cellpadding="0" cellspacing="0"  style="border-collapse:collapse;"  class="table table-striped table-bordered table-hover"  >
+                       <thead>
+                          <tr >
+                              {{#if has_login}}
+                                <th class="text-center"><i class="fa fa-plus"></i></th>
+                              {{/if}}
+                             <th class="text-left">Tổng</th>
+                             <th class="text-right">Số lượng ({{exchange}}) </th>
+                             <th class="text-right">Giá bán ({{namecoin}})</th>
+                             <!-- <th><i class="fa fa-star"></i></th> -->
+                          </tr>
+                       </thead>
+                       <tbody> 
+                          <tr ng-repeat="row in data | orderBy: 'price/10000000' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)" >
+                              {{#if has_login}}
+                                <td class="text-center"><i class="fa fa-plus" ng-click="ClickSellOrder(row.total+'_'+row.quantity+'_'+row.price)"></i></td>
+                              {{/if}}
+                            <td class="text-left" ng-click="ClickSellForm(row.quantity+'_'+row.price)">{[{(row.total/100000000) | addCommas}]}</td>
+                            <td class="text-right" ng-click="ClickSellQuantityForm(row.quantity)">{[{(row.quantity/100000000).toFixed(8)}]}</td>
+                            <td class="text-right" ng-click="ClickSellPriceForm(row.price)">{[{(row.price/100000000) | addCommas}]}</td>
+                            <!-- <td ng-if="row.user_id == user_id"><i class="fa fa-star"></i></td>
+                            <td ng-if="row.user_id != user_id"></td> -->
+                          </tr>
+                          <tr >
+                            <td style="text-align: center;" class="text-center" colspan="4" ng-show="data.length == 0">Không có dữ liệu</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                    <div class="pull-left">{[{data | sumOfValue:'total'}]} {{namecoin}}</div>
+                    <div class="pull-right">{[{data | sumOfValue:'quantity'}]} {{exchange}}</div>
+                    
+                    <div class="clearfix"></div>
+                    <pagination class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+                    <div class="clearfix"></div>
+                 </div>
+               
+               </div>
+            </div>
+         </div>
+
+
+        {{#if has_login}}
+       <div class="col-md-12 hidden_js">
+            <div class="card">
+               <div class="content">
+                  <h4 class="title">LỆNH ĐẶT MUA/BÁN</h4>
+                  <div class="table-exchanges" ng-controller="CtrOrderOpen">
+                   <table border="1" cellpadding="0" cellspacing="0"  style="border-collapse:collapse;" class="table table-striped table-bordered table-hover"  >
+                      <thead>
+                          <tr>
+                             <th class="text-left" style="text-align: left;">Thời gian</th>
+                             <th class="text-left">Loại</th>
+                             <th class="text-right">Giá Mua/Bán</th>
+                             <th class="text-right">Số lượng {{exchange}}</th>
+                             <th class="text-right hidden-sm hidden-xs">Phí </th>
+                             <th class="text-right hidden-sm hidden-xs">Tổng số ước tính {{namecoin}}</th>
+                             <th><i class="fa fa-times"></i></th>
+                          </tr>
+                       </thead>
+                       <tbody> 
+                          <tr ng-repeat="row in data | orderBy: '-date' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)">
+                            
+                            <td  class="text-left" style="text-align: left;"  >{[{row.date}]}</td>
+                            <td class="text-center" ng-if="row.type == 'Buy'"><span class="buy">MUA</span> </td>
+                            <td class="text-center" ng-if="row.type == 'Sell'"><span class="sell">BÁN </span></td>
+                            
+                            <td class="text-right">{[{row.price}]}</td>
+                            <td class="text-right">{[{row.quantity}]}</td>
+                            <td class="text-right hidden-sm hidden-xs">{[{row.commission}]}</td>
+                            <td class="text-right hidden-sm hidden-xs" >{[{row.total}]}</td>
+                            <td class="text-center">
+                              <span class="remove_order_exchange" ng-click="ClickCancelOrder(row.remove)">
+                                <i class="fa fa-times"></i>
+                              </span>
+                            </td>
+                            
+                          </tr>
+                          <tr >
+                            <td style="text-align: center;" class="text-center" colspan="7" ng-show="data.length == 0">Không có dữ liệu</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                    <pagination class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+                    <div class="clearfix"></div>
+                 </div>
+               
+               </div>
+            </div>
+         </div>   
+         {{/if}}
+
+
+         <div class="col-md-12 hidden_js" ng-controller="CtrMarketHistory">
+            <div class="card">
+              <div class="content">
+                  <h4 class="title pull-left">Lịch sử giao dịch</h4>
+                  <div class="pull-right" style="margin-top: 5px;"><span style="line-height: 30px; margin-right: 5px" class="pull-left">Hiển thị</span>
+                    <select style="width: 70px; height: 30px;" class="form-control pull-left" ng-model="viewbys" ng-change="setItemsPerPage_history(viewbys)">
+                      <option value="10" selected="selected">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>  
+                    <span style="line-height: 30px; margin-left: 5px" class="pull-left">dòng</span>
+                  </div>
+                  <div class="table-exchanges" >
+                   <table border="1" cellpadding="0" cellspacing="0"  style="border-collapse:collapse;"  class="table table-striped table-bordered table-hover"  >
+                       <thead>
+                          <tr>
+                             <th class="text-left" style="text-align: left;">Thời gian</th>
+                             <th class="text-center">Mua/Bán</th>
+                             <th class="text-right">Giá mua/Giá bán</th>
+                             <th class="text-right hidden-sm hidden-xs">Số lượng ({{exchange}}) </th>
+                             <th class="text-right hidden-sm hidden-xs">Tổng chi phí ({{namecoin}})</th>
+                          </tr>
+                       </thead>
+                       <tbody> 
+                          <tr ng-repeat="row in data | orderBy: '-date' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)">
+                            <td class="text-left" style="text-align: left;">{[{row.date  | date:"MM/dd/yyyy h:mm a"}]}</td>
+                            <td ng-if="row.type == 'Buy'" class="buy text-center">MUA <i class="fa fa-arrow-up"></i></td>
+                            <td ng-if="row.type == 'Sell'" class="sell text-center">BÁN <i class="fa fa-arrow-down"></i></td> 
+                            <td class="text-right">{[{(row.price/100000000) | addCommas}]}</td>
+                            <td class="text-right hidden-sm hidden-xs">{[{(row.quantity/100000000).toFixed(8)}]}</td>
+                            <td class="text-right hidden-sm hidden-xs">{[{(row.total/100000000) | addCommas}]}</td>
+                          </tr>
+                          <tr >
+                            <td style="text-align: center;" class="text-center" colspan="5" ng-show="data.length == 0">Không có dữ liệu</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                    <div class="clearfix"></div>
+                    <pagination class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+                    <div class="clearfix"></div>
+                 </div>
+               </div>
+            </div>
+         </div>
+        
+          {{#if has_login}}
+            <div class="col-md-12 hidden_js" ng-controller="CtrMyMarketHistory">
+              <div class="card">
+                <div class="content">
+                    <h4 class="title pull-left">Lịch sử của bạn</h4>
+                    <div class="pull-right" style="margin-top: 5px;"><span style="line-height: 30px; margin-right: 5px" class="pull-left">Hiển thị</span>
+                      <select style="width: 70px; height: 30px;" class="form-control pull-left" ng-model="viewbys" ng-change="setItemsPerPage_history(viewbys)">
+                        <option value="10" selected="selected">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>  
+                      <span style="line-height: 30px; margin-left: 5px" class="pull-left">dòng</span>
+                    </div>
+                    <div class="table-exchanges" >
+                     <table border="1" cellpadding="0" cellspacing="0"  style="border-collapse:collapse;"  class="table table-striped table-bordered table-hover"  >
+                         <thead>
+                            <tr>
+                               <th class="text-left" style="text-align: left;">Thời gian</th>
+                               <th class="text-center">Mua/Bán</th>
+                               <th class="text-right">Giá mua/Giá bán</th>
+                               <th class="text-right hidden-sm hidden-xs">Số lượng ({{exchange}}) </th>
+                               <th class="text-right hidden-sm hidden-xs">Tổng chi phí ({{namecoin}})</th>
+                            </tr>
+                         </thead>
+                         <tbody> 
+                            <tr ng-repeat="row in data | orderBy: '-date' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)" ng-if="row.user_id_buy != row.user_id_sell">
+                              <td class="text-left" style="text-align: left;">{[{row.date  | date:"MM/dd/yyyy h:mm a"}]}</td>
+                              <td ng-if="row.user_id_buy == user_id" class="buy text-center">MUA</td>
+                              <td ng-if="row.user_id_sell == user_id" class="sell text-center">BÁN</td> 
+                              <td class="text-right">{[{(row.price/100000000) | addCommas}]}</td>
+                              <td class="text-right hidden-sm hidden-xs">{[{(row.quantity/100000000).toFixed(8)}]}</td>
+                              <td class="text-right hidden-sm hidden-xs">{[{(row.total/100000000) | addCommas}]}</td>
+                            </tr>
+                            <tr >
+                            <td style="text-align: center;" class="text-center" colspan="5" ng-show="data.length == 0">Không có dữ liệu</td>
+                          </tr>
+                         </tbody>
+                      </table>
+                      <div class="clearfix"></div>
+                      <pagination class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+                      <div class="clearfix"></div>
+                   </div>
+                 </div>
+              </div>
+           </div>
+          {{/if}}
+      </div>
+   </div>
+</div>

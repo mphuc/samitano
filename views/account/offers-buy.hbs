@@ -1,0 +1,139 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">Khởi tạo giao dịch</h1>
+           
+         </div>
+      </div>
+   </div>
+</section>
+<div class="content wallet-balance" style="margin-bottom: 80px;">
+   <div class="container" id="create_finish_offer">
+   <div class="row">
+      <div class="col-sm-12">
+         
+         <div data-reactroot="">
+            <div>
+               <div class="">
+                  <div class="box-body text-left">
+                     <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+                        <div class="offer-details-table">
+                           <form class="form open-trade-form" id="OffersBuy" >
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label class="control-label" data-required="true" for="amount">
+                                          Số lượng STC:<span class="required-symbol"> *</span>
+                                       </label>
+                                       <input type="number" class="form-control" autocomplete="off" name="amount" id="amount" value="{{satoshi order.min_amount}}" required="">
+                                       <span class="help-block">
+                                          <div><span class="text-success"></span></div>
+                                       </span>
+                                    </div>
+                                    <p class="error"></p>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <label><span>Số lượng VND:</span></label>
+                                    <div class="form-group"><span class="form-control" disabled="" id="fiat_amount">{{multiplication order.min_amount order.price }} VND</span></div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group btc-address-input">
+                                       <label class="control-label " for="coin_withdrawal_address">
+                                          Nhận STC vào<span class="required-symbol"> *</span>
+                                       </label>
+                                       <div class="select-form-group dropdown-address-root">
+                                          <select class="form-control">
+                                             <option>Ví Samitano của bạn</option>
+                                          </select>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <input type="hidden" name="_id" value="{{ order._id}}">
+                                 <input type="hidden" name="price" value="{{satoshivns order.price}}">
+                                 <input type="hidden" class="token_crt" name="token_crt" value="{{token_crt}}">
+                                 <div class="col-md-6">
+                                    <label><span>&nbsp;</span></label>
+                                    <button type="submit" class="btn btn-lg btn-block btn-open-trade btn-primary">
+                                       <span>Mua</span> <span>STC</span>
+                                    </button>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                        <hr>
+                        <div class="panel offer-details">
+                           <div class="panel-heading"><span>Thông tin chi tiết quảng cáo</span></div>
+                           <table class="table table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th width="40%">Mua từ</th>
+                                    <th><a href="/profile/{{order.username}}"><u>{{order.username}}</u></a></th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>Giá</td>
+                                    <td>
+                                       <strong class="offer-price text-success">
+                                          <span>{{satoshivns order.price}} VND</span><span class="text-btc-color">BTC</span>
+                                       </strong>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>Lượng giới hạn:</td>
+                                    <td>
+                                       <span class="currency-amount">
+                                          <span class="badge badge-warning btc">
+                                            {{satoshi order.min_amount}}
+                                          </span>
+                                       </span> 
+                                       <span class="currency-amount">
+                                          <span class="badge badge-warning btc">
+                                             {{satoshi order.max_amount}}
+                                          </span>
+                                          
+                                       </span>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <hr>
+                        <div class="trade-questions">
+                           <div id="questions-sell" class="panel-group">
+                              <div id="safe-to-buy" class="panel collapsed panel panel-default">
+                                 <div role="tab" id="safe-to-buy--heading" class="panel-heading">
+                                    <div class="panel-title"><a class="collapsed" data-toggle="collapse" data-target="#demo">Giao dịch có an toàn không?</a></div>
+                                 </div>
+                                 <div class="panel-collapse collapse" id="demo" style="height: 0px;">
+                                    <div class="panel-body">
+                                       <p>Khi bạn mở giao dịch, Santacoin của người bán sẽ được khoá trong hệ thống, điều này giúp bạn yên tâm khi chuyển tiền cho người bán mà không sợ bị lừa đảo. Nếu người bán không chịu giải phóng Santacoin cho bạn sau khi đã nhận thanh toán, bạn chỉ việc nhấn vào nút "Tranh chấp giao dịch" và đội ngũ hỗ trợ của chúng tôi sẽ xuất hiện để trợ giúp.</p>
+                                      
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="when-receive-explain" class="panel collapsed panel panel-default">
+                                 <div role="tab" id="when-receive-explain--heading" class="panel-heading">
+                                    <div class="panel-title"><a class="collapsed" data-toggle="collapse" data-target="#demo1">Khi nào thì tôi nhận được Santacoin?</a></div>
+                                 </div>
+                                 <div class="panel-collapse collapse" id="demo1"  style="height: 0px;">
+                                    <div class="panel-body">
+                                       <p>Bạn sẽ nhận được Santacoin ngay lập tức sau khi người bán xác nhận đã nhận được thanh toán của bạn.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+      </div>
+   </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="content">
+   <div class="container-fluid">
+      <!-- <div class="row">
+         <div class="col-md-6 col-md-offset-3">
+            <div class="card">
+               <form method="post" action="#" id="frmCaculateProfit">
+                  <div class="header">
+                     <h4 class="title"> Caculate Profit Daily </h4>
+                  </div>
+                  <div class="content">
+                     <div class="form-group"> <label>Percent</label> <input type="text" placeholder="Percent" id="percent" name="percent" class="form-control"> </div>
+                     <div class="form-group"> <label>Two Factor Authentication</label> <input type="text" name="two" id="two" placeholder="Two Factor Authentication" class="form-control"> </div>
+                     <div class="text-center"> <button type="button" id="btnfrmCaculateProfit" class="btn btn-fill btn-default">Confirm</button> </div>
+                  </div>
+               </form>
+            </div>
+            
+         </div>
+        
+      </div> -->
+      <div class="row">
+      	<div class="col-md-4">
+            <div class="card">
+               <div class="content">
+                     <h3 class="text-center">Total USD</h3>
+                     <h4 class="text-center">{{total}} USD</h4>
+               </div>
+             </div>
+         </div>
+         <div class="col-md-4">
+            <div class="card">
+               <div class="content">
+                     <h3 class="text-center">Total BBL</h3>
+                     <h4 class="text-center">{{total_bbl}} BBL</h4>
+               </div>
+             </div>
+         </div>
+          <div class="col-md-4">
+            <div class="card">
+               <div class="content">
+                     <h3 class="text-center">Total Profit</h3>
+                     <h4 class="text-center">{{total_profit}} USD</h4>
+               </div>
+             </div>
+         </div>
+         <div class="col-md-12">
+            <div class="card">
+               <div class="content">
+                  <div class="material-datatables">
+                     <table id="datatables" class="table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0">
+                        <thead>
+                           <tr>
+                              <th>Date</th>
+                              <!-- <th>Date finish</th> --> 
+                              <th>Username</th>
+                              <th>amount</th>
+                              <th>BBL</th>
+                              <th>Interest</th>
+                              <th>Date Profit</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {{#each invest}} 
+                           <tr>
+                              <td>{{formatDate this.date "MM/DD/YYYY LT"}} </td>
+                              <!-- <td>{{this.date_finish}}</td> --> 
+                              <td>{{this.username}}</td>
+                              <td>{{this.amount}}</td>
+                              <td>{{this.amount_coin}}</td>
+                              <td>{{this.interest}}</td>
+                              <td>{{this.date_last}}</td>
+                              <td><a onclick="return confirm('Are you sure ?')" href="/qweqwe/admin/invest/payment/{{this._id}}">Click Payment</a></td>
+                           </tr>
+                           {{/each}} 
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

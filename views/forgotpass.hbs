@@ -1,0 +1,39 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">Quên mật khẩu</h1>
+            
+         </div>
+      </div>
+   </div>
+</section>
+<div class="row">
+   <div class="container alert_forgot">
+      <div class="col-sm-12">
+         <div class="alert-info fade-and-collapsen">
+            <span>
+               <span>
+                  Chúng tôi đã gửi liên kết để lấy lại mật khẩu vào email của bạn. Bấm vào nút bên trong email để xác thực email. Kiểm tra cả hộp thư rác nếu bạn không tìm thấy email trong hộp thư chính.
+               </span>
+            </span>
+         </div>
+      </div>
+   </div>
+   <div class="cleafix">
+   <div class="col-sm-4 col-sm-push-4">
+      <form class="form login-form" id="frmForgot">
+         <div class="form-group form-grop__icon">
+            <i class="fa fa-envelope-o"></i>
+            <div class="remi-colorized-field ">
+               <input class="form-control" type="text" name="email" value="" placeholder="Nhập email của bạn">
+               <span class="error"></span>
+               <div></div>
+            </div>
+         </div>
+         
+         <input type="hidden" class="token_crt" name="token" value="{{token}}">
+         <div class="form-group"><button class="btn btn-block btn-primary btn-continue" type="submit"><span>Lấy lại mật khẩu</span></button></div>
+      </form>
+   </div>
+</div>

@@ -1,0 +1,173 @@
+#Login-page{
+	background: #00aeef;
+}
+
+#Login-page div.header, #Register-page div.header {
+    padding: 0px 0;
+    background: #fff;
+}
+
+#Login-page input, #Register-page input {
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 10px 19px 10px 35px;
+    height: auto;
+}
+
+#Forgot-Password-page .header.p-b-10{
+    padding-bottom: 0px !important;
+}
+
+#Forgot-Password-page{
+    background: #00aeef;
+}
+
+#Forgot-Password-page .header{
+    background: #fff;
+}
+
+
+  #Register-page .login-href{
+  	padding: 15px
+  }
+
+    #Register-page .login-href a{
+    	color: #f60;
+    	float: left;
+    }
+
+#Register-page .card-contact{
+	border: 1px solid #cecece;
+	min-height: 421px;
+	margin-bottom: 30px;
+}
+
+#Register-page .bg-while{
+    background: none;
+}
+
+#frmRegister{
+	max-width: 400px;
+	float: none;
+	margin: auto;
+	position: relative;
+}
+#Login-page .login-back, div.singup-page .login-href {
+    margin-top: 46px;
+}
+
+#Login-page div.main {
+    background-color: #00aeef;
+    padding: 40px 0;
+}
+
+#Login-page .login-page-right,
+#Register-page .login-page-right{
+	position: relative;
+}
+
+#Login-page .login-page-right > img, #Register-page #frmRegister > img{
+	position: absolute;
+    bottom: 0px;
+    width: 360px;
+    opacity: 0.5;
+    height: 442px;
+    cursor: wait;
+}
+
+#Register-page #frmRegister > img{
+	left: 0px;
+}
+
+#Login-page .text-mb{
+	display: none;
+}
+
+#Login-page .login-back a, div.login-page .login-back a:focus, div.login-page .login-back a:hover {
+    color: #A0A0A0;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+#Login-page .bg-while,
+#Register-page .bg-while {
+    padding: 40px 45px 25px;
+    border-radius: 5px;
+}
+
+#Login-page .ridect-signup , #Login-page #verify + a , #Login-page a.fg-pword{
+    color: #f60;
+}
+
+#Login-page input[type=text], #Register-page input[type=text] {
+    background: url(../img/user-14.png) 9px center no-repeat;
+    background-size: 18px;
+}
+
+#Login-page input, div.singup-page input {
+  
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 10px 19px 10px 35px;
+    height: auto;
+}
+
+#Login-page input[type=password], #Register-page input[type=password] {
+    background: url(../img/user-16.png) 9px center no-repeat;
+    background-size: 18px;
+}
+
+#Login-page .md-button, #Login-page .md-button:hover, .singup-page .md-button, .singup-page .md-button:hover {
+    background: #EF3F41!important;
+    margin: 0;
+    width: 100%;
+    float: left;
+    display: block;
+    color: #fff;
+    min-height: 38px;
+    line-height: inherit;
+}
+
+.md-button:focus, .md-button:hover {
+    text-decoration: none;
+}
+
+#Login-page .frm-login-footer {
+    border-top: 1px solid #ccc;
+}
+
+#frmLogin button, #frmRegister button,#frmForgot button{
+	width: 100%;
+	float: left;
+    height: 42px;
+}
+
+.error-box{
+    display: none;
+}
+#recaptcha{
+    float: none;
+    margin: 0 auto;
+    display: block;
+}
+
+.authen-login h2{
+    font-size: 17px;
+}
+
+.authen-login .bg-while{
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+}
+
+
+
+@media screen and (max-width: 768px){
+    #Forgot-Password-page .login-logo, #Forgot-Password-page .login-logo {
+        margin: auto;
+        float: none !important;
+        text-align: center;
+        margin-top: 30px;
+    }
+}
+

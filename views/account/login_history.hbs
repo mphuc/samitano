@@ -1,0 +1,112 @@
+<div class="content">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-4">
+            <div class="card card-user">
+               <div class="author"> <a href="#pablo"> <img class="img avatar" src="/static/img/bitbeeline.png"> </a> </div>
+               <div class="content">
+                  Username:<h4 class="title">{{user.displayName}}</h4>
+                  <p class="description"> Email:<br> <strong>{{user.email}}</strong> </p>
+                 
+               </div>
+            </div>
+         </div>
+         <div class="col-md-8">
+            <div class="card">
+               <div class="header">
+                  <h3>Account security </h3>
+               </div>
+               <div class="content">
+                  <!-- BEGIN VALIDATION FORM WIZARD --> 
+                  <div id="formwizard_validation" class="form-wizard form-wizard-horizontal">
+                     <div class="form-wizard-nav">
+                      
+                        <ul class="nav nav-justified nav-pills">
+                        
+                           <li class="menu_tab"><a href="#two_factor" data-toggle="tab"><span class="form-wizard-title">TWO-FACTOR AUTH</span></a></li>
+                           <!--   <li><a href="#fwv_step3" data-toggle="tab"><span class="step">3</span> <span class="form-wizard-title">IP WHITELIST</span></a></li> --> 
+                           <li class="menu_tab"><a href="#change_password" data-toggle="tab"><span class="form-wizard-title">CHANGE PASSWORD</span></a></li>
+                           <li class="active menu_tab"><a href="/account/setting/login-history"><span class="form-wizard-title">LOGIN HISTORY</span></a></li>
+                        </ul>
+                     </div>
+                     <!--end .form-wizard-nav --> 
+                     <div class="tab-content clearfix p-t-30">
+                        
+                        <!--end #step1 --> 
+                        <div class="tab-pane " id="two_factor">
+                           <div class="well">
+                              {{#if_eq user.security.two_factor_auth.status '0'}} 
+                                 <h3>Enlable Google Authenticator</h3>
+                                    <ol>
+                                       <li>Install Google Authenticator on your phone.</li>
+                                       <li>Open the Google Authenticator app.</li>
+                                       <li>Tab menu, then tab "Set up Account", then "Scan a barcode" or "Enter key provided" is <strong style="word-break:break-all;">{{user.security.two_factor_auth.code}}</strong>.</li>
+                                       <li>Your phone will now be in "scanning" mode. When you are in this mode, scan  the barcode below:</li>
+                                    </ol>
+                                    <div class="mt-4 text-center">
+                                       <img src="{{qr_code_authy}}" width="300">
+                                    </div>
+                                    <p>Once you have scanned the barcode, enter the 6-digit code below:</p>
+
+                                    <div class="form-group text-center"> <label class="text-center">Input code from application:</label> <input name="GACode" id="account_frm_GACode" value="" size="20" class="form-control text-center" type="text"> </div>
+                                    <div class="text-center">  <button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Function" id="btn_frm_GACode">Activate</button></div>
+                              {{/if_eq}} 
+
+                              {{#if_eq user.security.two_factor_auth.status '1'}} 
+                                 <h3>Disable Google Authenticator</h3>
+                                 <p>Enter the 6-digit code below:</p>
+                                 <div class="form-group text-center"> <label class="text-center">Input code from application:</label> <input name="GACode" id="account_frm_GACode" value="" size="20" class="form-control text-center" type="text"> </div>
+                                 <div class="text-center"> 
+                                    <button type="submit" class="btn btn-danger" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Function" id="btn_frm_GACode">Disable</button> 
+                                 </div>
+                              {{/if_eq}} 
+                              
+                           </div>
+                        </div>
+                        <!--end #step2 --> 
+                        <div class="tab-pane" id="fwv_step3"> </div>
+                        <!--end #step3 --> 
+                        <div class="tab-pane" id="change_password">
+                           <form  id="frmChangePassword" action="#" method="">
+                              <div class="content">
+                                 <div class="form-group label-floating"> <label class="control-label"> Old Password <small>*</small> </label> <input class="form-control" name="oldpassword" id="oldPassword" type="password" required="true"> </div>
+                                 <div class="form-group label-floating"> <label class="control-label"> New Password <small>*</small> </label> <input class="form-control" name="newPassword" id="newPassword" type="password" required="true"> </div>
+                                 <div class="form-group label-floating"> <label class="control-label"> Confirm New Password <small>*</small> </label> <input class="form-control" name="cfpassword" id="cfpassword" type="password" required="true" equalto="#registerPassword"> </div>
+                                 <div class="text-center"> <button type="submit" class="btn btn-rose btn-fill"  data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Function" >Save Changes</button> </div>
+                              </div>
+                           </form>
+                        </div>
+                        <!--end #step4 --> 
+                        <div class="tab-pane active" id="fwv_step5">
+                           <div class="material-datatables">
+                              <table id="login_history" class="table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0" >
+                                 <thead>
+                                    <tr>
+                                       <th>Date</th>
+                                       <th>ADDRESS</th>
+                                       <th>USER AGENT</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {{#each user.security.login_history}} 
+                                    <tr>
+                                       <td>{{prettifyDate this.date}} </td>
+                                       <td>{{this.ip}} <br>{{this.country_name}}</td>
+                                       <td>{{this.user_agent}}</td>
+                                    </tr>
+                                    {{/each}} 
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <!--end #step5 --> 
+                     </div>
+                     <!--end .tab-content --> 
+                  </div>
+                  <!--end #rootwizard --> <!-- END VALIDATION FORM WIZARD --> 
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

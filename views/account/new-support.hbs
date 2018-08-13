@@ -1,0 +1,48 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">Tạo hỗ trợ</h1>
+            
+         </div>
+      </div>
+   </div>
+</section>
+<div class="content ">
+   <div class="container">
+      <div class="">
+         
+      <div class="row">
+         <div class="col-md-12">
+            <div class="card" style="padding: 20px;">
+               <div class="col-md-8 col-md-push-2">
+                  <form method="post" action="/account/support/new-support" id="frmNewSupport" autocomplete="off" novalidate="novalidate">
+                     <div class="form-group ">
+                        <label>Chủ đề</label>
+                        
+                        <input type="text" id="subject" maxlength="600" class="form-control input-flyp " name="subject" placeholder="Chủ đề" required="" autocomplete="off">
+                           
+                     </div>
+
+                     <div class="form-group ">
+                        <label>Nội dung</label>
+                        <textarea class="form-control" style="height: 150px;" name="message" id="message" maxlength="2000" placeholder="Nội dung"></textarea>
+                     </div>
+                      <div class="form-group text-center" id="capatcha">
+                        <div  class="g-recaptcha" data-theme="light" data-sitekey="6LdT7jkUAAAAAI4CuloB7UO6FM7ue14ZbFisSR5e"></div>
+                     </div>
+                     <div class="text-center">
+                        <button type="submit" style="margin-top: 20px;width: 120px;" class="btn btn-primary">Gửi hỗ trợ</button>
+                     </div>
+
+                  </form>
+                  <div class="clearfix"></div>
+               </div>
+               <div class="clearfix"></div>
+            </div>
+         </div>
+      </div>
+
+      </div>
+   </div>
+</div>

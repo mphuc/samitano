@@ -1,0 +1,231 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="opening banner">
+         <div class="col-lg-6 intro-tex">
+            <div class="row  text-center mobile-app-hidden">
+               <div class="vcenter col-md-12">
+                  <div class="introduction last text-center">
+                     <h1 class="header-a text-center">Chợ Santacoin Samitano</h1>
+                     <p>
+                        <span>
+                           Nơi mua bán Santacoin <strong>AN TOÀN</strong> và <strong>NHANH CHÓNG</strong>
+                        </span>
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="row  price-content text-center">
+               <div class="col-xs-6">
+                  <h4>Giá bán:</h4>
+                  <b class="text-success price_sell"></b><br><a class="btn btn-success" href="/quick#BuyNow">Mua Ngay</a>
+               </div>
+               <div class="col-xs-6">
+                  <h4>Giá mua:</h4>
+                  <b class="text-danger price_buy"></b><br><a class="btn btn-danger" href="/quick#SellNow">Bán Ngay</a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6" style="position: relative;">
+            <div class="ytp-cued-thumbnail-overlay-image" style="background-image: url(../images/banner.png);"></div>
+         </div>
+         <div class="clearfix"></div>
+      </div>
+   </div>
+</div>
+<div class="container">
+   <div class="">
+      <div class=" alert_changepassword" style="display: none;">
+      <div class="   ">
+         <div class="alert-info fade-and-collapsen">
+            <span>
+               <span>
+                  Chúng tôi đã gửi liên kết để đăng nhập vào <strong class="email"></strong>. Bấm vào nút bên trong email để xác thực email. Kiểm tra cả hộp thư rác nếu bạn không tìm thấy email trong hộp thư chính.
+               </span>
+            </span>
+         </div>
+      </div>
+   </div>
+      <div class="clearfix"></div>
+      <div class="main-container">
+         <div class="refarall_link_background">
+            <div class="user-referral-program referral-landing">
+               <div class="text-center prelude">
+                  <span>
+                     <span>
+                        Nhận ngay <b>1,500,000 VND</b> cho mỗi một người được bạn giới thiệu tham gia Samitano.
+                     </span>
+                  </span>
+                  <span>Chia sẻ liên kết sau:</span>
+               </div>
+               
+               {{#if_eq has_login true}}
+                  <div class="referral-link text-center"><strong class="text-danger referral-link">https://samitano.com/vn?ref={{user.displayName}}</strong>
+                  <a class="text-gray" href="https://twitter.com/intent/tweet?text=https://samitano.com/vn?ref={{user.displayName}}" target="_blank"><i class="fa fa-twitter" style="height: 18px; width: 16px; background: #8e8989; border-radius: 3px; font-size: 12px; color: #e4e4e4; line-height: 20px;"></i></a>
+                  <a class="text-gray" href="https://twitter.com/intent/tweet?text=https://samitano.com/vn?ref={{user.displayName}}" target="_blank"><i class="fa fa-facebook" style="height: 18px; width: 16px; background: #8e8989; border-radius: 3px; font-size: 12px; color: #e4e4e4; line-height: 20px;"></i></a>
+                  </div>
+               {{else}}
+                  <div class="text-center"><a class="btn button_referall" href="/signin">Đăng nhập để lấy link giới thiệu</a></div>
+               {{/if_eq}}
+               
+            </div>
+            <p class="text-center referral_program"><a href="/referral_program">Tìm hiểu thêm</a></p>
+         </div>
+
+      </div>   
+   </div>
+
+</div>
+
+<div class="container">
+   <div class="">
+      <div id="offer-list">
+         <div class="row sell-offers">
+            <div class="col-sm-12">
+               <div class="offers-price-ladder" ng-controller="CtrOrderSell">
+                  <div class="row">
+                     <div class="col-sm-8">
+                        <div class="title-accent">
+                           <h3><span>Danh sách người bán</span></h3>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <div>
+                     <div >
+                        <div class="loading-container text-center">
+                           <div class="loading-bar"></div>
+                        </div>
+
+                        <div class="content-wrapper">
+                           <div class="main-container">
+
+                              <ol class="offerlist sell-offers-price-ladders hidden_js">
+                                 <li ng-repeat="row in data | orderBy: 'price' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)"  class="offer">
+                                 
+                                    <div class="offer-wrapper buy-offer active offer-359128">
+                                       <div class="row">
+                                          <div class="col-xs-12 col-sm-9 text-left">
+                                             <a class="offer-body-meta" href="">
+                                                <div class="offer-body">
+                                                   <strong class="offer-price text-success">
+                                                      <span>{[{(row.price/100000000) | addCommas}]}VND</span>/<span class="text-btc-color">STC</span>
+                                                   </strong>
+                                                   <span> qua </span>
+                                                   <span>
+                                                      <span>Chuyển khoản ngân hàng</span>
+                                                      <span>
+                                                         Vietcombank
+                                                      </span>
+                                                   </span>
+                                                </div>
+                                                <div class="offer-meta">
+                                                   <span>Tối đa</span>
+                                                   <strong>
+                                                      <span>{[{(row.max_amount) | satoshi}]}</span><span>STC</span>
+                                                   </strong>
+                                                </div>
+                                             </a>
+                                             <div class="offer-meta">
+                                                <div class="offer-author">
+                                                   <a href="/vn/profile/kenshinha"><strong class="offer-item-username"><span class="text-success icon-globe-new"></span><span>{[{(row.username)}]} </span></strong></a><em class="speed-badge badge badge-success">người bán nhanh</em>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-sm-3 text-right hidden-xs"><a class="btn btn-default" href="/offers/buy/{[{(row._id)}]}">Mua</a></div>
+                                       </div>
+                                    </div>
+                                 </li>
+                                 
+                              </ol>
+                              <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" ng-show="data.length == 0">Không có dữ liệu</h3>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="pull-left">
+                        <pagination ng-show="data.length > 0" class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize"  class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" previous-text="Trang trước" next-text="Trang sau" first-text="Đầu tiên" last-text="Cuối cùng" ></pagination>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <hr>
+         <div class="row buy-offers">
+            <div class="col-sm-12">
+               <div class="offers-price-ladder" ng-controller="CtrOrderBuy">
+                  <div class="row">
+                     <div class="col-sm-8">
+                        <div class="title-accent">
+                           <h3><span>Danh sách người mua</span></h3>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <div>
+                     <div>
+                        <div class="loading-container text-center">
+                           <div class="loading-bar"></div>
+                        </div>
+                        <div class="content-wrapper">
+                           <div class="main-container">
+                          
+                              <ol class="offerlist buy-offers-price-ladders hidden_js">
+                                 <li ng-repeat="row in data | orderBy: '-price' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)"  class="offer">
+                                 
+                                    <div class="offer-wrapper  has-fiat sell-offer active offer-359128">
+                                       <div class="row">
+                                          <div class="col-xs-12 col-sm-9 text-left">
+                                             <a class="offer-body-meta" href="">
+                                                <div class="offer-body">
+                                                   <strong class="offer-price text-success">
+                                                      <span>{[{(row.price/100000000) | addCommas}]}VND</span>/<span class="text-btc-color">STC</span>
+                                                   </strong>
+                                                   <span> qua </span>
+                                                   <span>
+                                                      <span>Chuyển khoản ngân hàng</span>
+                                                      <span>
+                                                         Vietcombank
+                                                      </span>
+                                                   </span>
+                                                </div>
+                                                <div class="offer-meta">
+                                                   <span>Tối đa</span>
+                                                   <strong>
+                                                      <span>{[{(row.max_amount) | satoshi}]}</span><span>STC</span>
+                                                   </strong>
+                                                </div>
+                                             </a>
+                                             <div class="offer-meta">
+                                                <div class="offer-author">
+                                                   <a href="/vn/profile/kenshinha"><strong class="offer-item-username"><span class="text-success icon-globe-new"></span><span>{[{(row.username)}]} </span></strong></a><em class="speed-badge badge badge-success">người bán nhanh</em>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-sm-3 text-right hidden-xs"><a class="btn btn-default" href="/offers/sell/{[{(row._id)}]}">Bán</a></div>
+                                       </div>
+                                    </div>
+                                 </li>
+                              </ol>
+                              <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" ng-show="data.length == 0">Không có dữ liệu</h3>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="pull-left">
+                        <pagination ng-show="data.length > 0" class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize"  class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" previous-text="Trang trước" next-text="Trang sau" first-text="Đầu tiên" last-text="Cuối cùng" ></pagination>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>   
+
+
+<div class="container" style="margin-bottom: 50px;">
+   <div class="">
+      <hr>
+      <span>Muốn giá tốt hơn?</span>
+      <a class="btn btn-primary btn-create-offer" href="offers/create">Tạo quảng cáo</a>
+   </div>
+</div>

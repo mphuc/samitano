@@ -1,0 +1,403 @@
+<section class="page-heading" >
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="text-left">GIAO DỊCH CỦA BẠN</h1>
+            <h1 class="ng-binding ng-hide"></h1>
+         </div>
+      </div>
+   </div>
+</section>
+<div class="content wallet-balance" style="margin-bottom: 80px;">
+   <input type="hidden" name="user_id" value="{{user._id}}">
+   <div class="container" >
+      <div class="row">
+         <div class="col-md-12">
+            <div class="tabs">
+               <ul class="nav nav-tabs nav-tabs-customer" id="tab-vnd">
+                  <li class="active"><a data-toggle="tab" href="#dashboard1"><i class="fa fa-clock-o"></i>  Giao dịch đang mở</a></li>
+                  <li><a data-toggle="tab" href="#dashboard2"><i class="fa fa-check"></i> Giao dịch đã đóng</a></li>
+                  <li><a data-toggle="tab" href="#dashboard3"><i class="fa fa-bullhorn"></i> Các quảng cáo của tôi</a></li>
+                  <li><a data-toggle="tab" href="#dashboard4"><i class="fa fa-gift"></i> Danh sách giới thiệu</a></li>
+               </ul>
+
+               <div class="tab-content">
+                 <div id="dashboard1" class="tab-pane fade in active"  ng-controller="CtrOrderOpen">
+                  <div class="trades-list-container">
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <div class="title-accent">
+                              <h3><span>Giao dịch đang mở</span></h3>
+                           </div>
+                        </div>
+                     </div>
+                     <div>
+                        <div>
+                           <div class="text-center" ng-show="loading">
+                               <img style="margin: 0 auto" src="/images/loading_bar.gif">
+                           </div>
+                           
+                           <div class="content-wrapper" ng-show="showorder">
+                              <div class="table-responsive main-container">
+                                 <ol class="trades-list hidden_js">
+                                    <li class="trade-item " ng-repeat="row in data | orderBy: 'price' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)" >
+                                       <div class="trade-wrapper " ng-class="row.user_id_buy == user_id ? 'as-buyer' : 'as-seller'" >
+                                          <div class="row">
+                                             <div class="col-xs-4 col-sm-3 col-md-2 text-center">
+                                                <div>
+                                                <a ng-if="row.user_id_buy == user_id" class="btn btn-default btn-sm" href="/trades-buy/{[{row._id}]}">{[{row.code}]}</a>
+                                                <a ng-if="row.user_id_sell  == user_id" class="btn btn-default btn-sm" href="/trades-sell/{[{row._id}]}">{[{row.code}]}</a>
+                                                </div>
+                                                <div class="trade-status">Chờ xác nhận</div>
+                                             </div>
+                                             <div class="col-xs-8 col-sm-9 col-md-7">
+                                                <div>
+                                                   <span class="trade-prefix text-success" ng-if="row.user_id_buy == user_id">[Mua]</span>
+                                                   <span class="trade-prefix" style="color: #d9534f;" ng-if="row.user_id_sell == user_id">[Bán]</span>
+                                                   <span class="currency-amount">
+                                                      <span class="badge badge-default btc">
+                                                         {[{(row.quantity) | satoshi}]} STC
+                                                      </span>
+                                                   </span>
+
+                                                   <span  ng-if="row.user_id_buy == user_id"> từ </span>
+                                                   <span  ng-if="row.user_id_sell == user_id"> cho </span>
+
+                                                   <a href="/profile/{[{row.username_buy}]}"><strong><u>{[{row.username_buy}]}</u></strong></a>
+                                                </div>
+                                                <div>
+                                                   <span>Giá trị giao dịch</span>
+                                                   <strong class="trade-prefix" ng-if="row.user_id_buy == user_id" >
+                                                      {[{(row.total/100000000) | addCommas}]} VND
+                                                   </strong>
+                                                   <strong class="trade-prefix" ng-if="row.user_id_sell == user_id" style="color: #d9534f;">
+                                                      {[{(row.total/100000000) | addCommas}]} VND
+                                                   </strong>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </li>
+                                 </ol>
+
+                              </div>
+                              <div class="pull-left">
+                                 <pagination ng-show="data.length > 0" class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize"  class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" previous-text="Trang trước" next-text="Trang sau" first-text="Đầu tiên" last-text="Cuối cùng" ></pagination>
+                                 
+                              </div>
+                              <div class="clearfix"></div>
+                           </div>
+                           <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" {[{data.length}]} ng-show="data.length == 0">Không có dữ liệu</h3>
+                        </div>
+                     </div>
+                  </div>
+
+                 </div>
+                 <!--  -->
+                 <div id="dashboard2" class="tab-pane fade" ng-controller="CtrOrderClose">
+                     <div class="trades-list-container">
+                        <div class="row">
+                           <div class="col-sm-8">
+                              <div class="title-accent">
+                                 <h3><span>Giao dịch đang mở</span></h3>
+                              </div>
+                           </div>
+                        </div>
+                        <div>
+                           <div>
+                              <div class="text-center" ng-show="loading">
+                                  <img style="margin: 0 auto" src="/images/loading_bar.gif">
+                              </div>
+                              
+                              <div class="content-wrapper" ng-show="showorder">
+                                 <div class="table-responsive main-container">
+                                    <ol class="trades-list hidden_js">
+                                       <li class="trade-item " ng-repeat="row in data | orderBy: 'price' | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)" >
+                                          <div class="trade-wrapper " ng-class="row.user_id_buy == user_id ? 'as-buyer' : 'as-seller'" >
+                                             <div class="row">
+                                                <div class="col-xs-4 col-sm-3 col-md-2 text-center">
+                                                   <div>
+                                                   <a ng-if="row.user_id_buy == user_id" class="btn btn-default btn-sm" href="/trades-buy/{[{row._id}]}">{[{row.code}]}</a>
+                                                   <a ng-if="row.user_id_sell  == user_id" class="btn btn-default btn-sm" href="/trades-sell/{[{row._id}]}">{[{row.code}]}</a>
+                                                   </div>
+
+                                                   <div ng-if="row.status == 2" class="trade-status">Đã hoàn tất</div>
+                                                   <div ng-if="row.status == 8" class="trade-status">Đã bị hủy</div>
+                                                </div>
+                                                <div class="col-xs-8 col-sm-9 col-md-7">
+                                                   <div>
+                                                      <span class="trade-prefix text-success" ng-if="row.user_id_buy == user_id">[Mua]</span>
+                                                      <span class="trade-prefix" style="color: #d9534f;" ng-if="row.user_id_sell == user_id">[Bán]</span>
+                                                      <span class="currency-amount">
+                                                         <span class="badge badge-default btc">
+                                                            {[{(row.quantity) | satoshi}]} STC
+                                                         </span>
+                                                      </span>
+
+                                                      <span  ng-if="row.user_id_buy == user_id"> từ </span>
+                                                      <span  ng-if="row.user_id_sell == user_id"> cho </span>
+
+                                                      <a href="/profile/{[{row.username_buy}]}"><strong><u>{[{row.username_buy}]}</u></strong></a>
+                                                   </div>
+                                                   <div>
+                                                      <span>Giá trị giao dịch</span>
+                                                      <strong class="trade-prefix" ng-if="row.user_id_buy == user_id" >
+                                                         {[{(row.total/100000000) | addCommas}]} VND
+                                                      </strong>
+                                                      <strong class="trade-prefix" ng-if="row.user_id_sell == user_id" style="color: #d9534f;">
+                                                         {[{(row.total/100000000) | addCommas}]} VND
+                                                      </strong>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </li>
+                                    </ol>
+
+                                 </div>
+                                 <div class="pull-left">
+                                    <pagination ng-show="data.length > 0" class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize"  class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" previous-text="Trang trước" next-text="Trang sau" first-text="Đầu tiên" last-text="Cuối cùng" ></pagination>
+                                    
+                                 </div>
+                                 <div class="clearfix"></div>
+                              </div>
+                              <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" {[{data.length}]} ng-show="data.length == 0">Không có dữ liệu</h3>
+                           </div>
+                        </div>
+                     </div>
+                 </div>
+                 <!--  -->
+                 <div id="dashboard3" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-lg-12">
+                           <div class="dashboard-escrow-content">
+                              <div>
+                                 <div class="row col-lg-12">
+                                    <div class="row buy-offers" ng-controller="CtrOrderBuyUser">
+                                       <div class="col-sm-12">
+                                          <div class="offers-price-ladder">
+                                             <div class="row">
+                                                <div class="col-sm-8">
+                                                   <div class="title-accent">
+                                                      <h3><span>Quảng cáo mua stc của bạn</span></h3>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div>
+                                                <div>
+   <div class="content-wrapper">
+      <div class="main-container">
+         <ol class="offerlist buy-offers-price-ladders hidden_js">
+            <li class="offer" ng-repeat="row in data | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)">
+
+               <div class="offer-wrapper buy-offer active offer-592671">
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-9 text-left">
+                        <a class="offer-body-meta" href="/offers/create-buy/{[{row._id}]}">
+                           <div class="offer-body">
+                              <strong class="offer-price text-danger">
+                                 <span>{[{(row.price/100000000) | addCommas}]} VND/</span><span class="text-btc-color">STC</span>
+                              </strong><span> qua ví nội bộ Samitano</span>
+                              
+                           </div>
+                           <div class="offer-meta" style="margin-bottom: 4px; margin-top: 8px;">
+                              <span>Số lượng đặt mua</span>
+                              <strong>
+                                 <span class="badge badge-default btc ng-binding">{[{(row.min_amount/100000000).toFixed(8) }]} STC</span><span> </span> -  <span class="badge badge-default btc ng-binding">{[{(row.max_amount/100000000).toFixed(8) }]} STC</span><span></span>
+                              </strong>
+                           </div>
+                        </a>
+                        <div class="offer-meta">
+                           <!-- <div class="offer-status">
+                              <span>
+                                 Trạng thái:
+                              </span>
+                              <strong class="text-success" ng-if="row.status == 0">
+                                 Đang hoạt động
+                              </strong>
+                              <strong class="text-danger" ng-if="row.status == 1">
+                                 Đang tạm dừng
+                              </strong>
+                              <div class="btn-group btn-group-sm">
+                                 
+                                    <a ng-if="row.status == 0" style="background: #d9534f" href="/offers/create-buy/pause/{[{row._id}]}" class="btn btn-danger btn-disable"><em class="fa fa-pause"></em><span class="hidden-xs" >Tạm dừng</span></a>
+                                    
+                                    <a ng-if="row.status == 1" style="background: #5ec663" href="/offers/create-buy/start/{[{row._id}]}" class="btn btn-success btn-enable"><em class="fa fa-play"></em><span class="hidden-xs">Kích hoạt</span></a>
+                                    
+                                    <a class="btn btn-default btn-edit" href="/offers/create-buy/edit/{[{row._id}]}"><em class="fa fa-pencil"></em><span class="hidden-xs">Chỉnh sửa</span></a>
+
+                                    <a style="background: #8f4bab" href="/offers/create-buy/remove/{[{row._id}]}" class="btn btn-primary btn-delete">
+                                       <em class="fa fa-times"></em><span class="hidden-xs">Xóa</span>
+                                    </a>
+                              </div>
+                           </div> -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ol>
+      </div>
+   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div ng-show="data.length > 0" class="pull-left" style="margin-bottom: 40px">
+                                             <pagination ng-show="data.length > 0" class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize"  class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" previous-text="Trang trước" next-text="Trang sau" first-text="Đầu tiên" last-text="Cuối cùng" ></pagination>
+                                             
+                                          </div>
+                                          <div class="clearfix"></div>
+                                          <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" {[{data.length}]} ng-show="data.length == 0">Không có dữ liệu</h3>
+                                       </div>
+
+                                       
+                                    </div>
+                                    <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" {[{data.length}]} ng-show="data.length == 0">Không tìm thấy quảng cáo nào</h3>
+
+                                    </div>
+
+                                    <hr>
+                                    <div class="row sell-offers">
+                                       <div class="col-sm-12">
+                                          <div class="row buy-offers" ng-controller="CtrOrderSellUser">
+                                       <div class="col-sm-12">
+                                          <div class="offers-price-ladder">
+                                             <div class="row">
+                                                <div class="col-sm-8">
+                                                   <div class="title-accent">
+                                                      <h3><span>Quảng cáo Bán stc của bạn</span></h3>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div>
+                                                <div>
+   <div class="content-wrapper">
+      <div class="main-container">
+         <ol class="offerlist sell-offers-price-ladders hidden_js">
+            <li class="offer" ng-repeat="row in data | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)">
+
+               <div class="offer-wrapper sell-offer active offer-592671">
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-9 text-left">
+                        <a class="offer-body-meta" href="/offers/create-buy/{[{row._id}]}">
+                           <div class="offer-body">
+                              <strong class="offer-price text-danger">
+                                 <span>{[{(row.price/100000000) | addCommas}]} VND/</span><span class="text-btc-color">STC</span>
+                              </strong><span> qua ví nội bộ Samitano</span>
+                              
+                           </div>
+                           <div class="offer-meta" style="margin-bottom: 4px; margin-top: 8px;">
+                              <span>Số lượng đặt bán</span>
+                              <strong>
+                                 <span class="badge badge-default btc ng-binding">{[{(row.min_amount/100000000).toFixed(8) }]} STC</span><span> </span> -  <span class="badge badge-default btc ng-binding">{[{(row.max_amount/100000000).toFixed(8) }]} STC</span><span></span>
+                              </strong>
+                           </div>
+                        </a>
+                        <!-- <div class="offer-meta">
+                           <div class="offer-status">
+                              <span>
+                                 Trạng thái:
+                              </span>
+                              <strong class="text-success" ng-if="row.status == 0">
+                                 Đang hoạt động
+                              </strong>
+                              <strong class="text-danger" ng-if="row.status == 1">
+                                 Đang tạm dừng
+                              </strong>
+                              <div class="btn-group btn-group-sm">
+                                 
+                                    <a ng-if="row.status == 0" style="background: #d9534f" href="/offers/create-sell/pause/{[{row._id}]}" class="btn btn-danger btn-disable"><em class="fa fa-pause"></em><span class="hidden-xs" >Tạm dừng</span></a>
+                                    
+                                    <a ng-if="row.status == 1" style="background: #5ec663" href="/offers/create-sell/start/{[{row._id}]}" class="btn btn-success btn-enable"><em class="fa fa-play"></em><span class="hidden-xs">Kích hoạt</span></a>
+                                    
+                                    <a class="btn btn-default btn-edit" href="/offers/create-sell/edit/{[{row._id}]}"><em class="fa fa-pencil"></em><span class="hidden-xs">Chỉnh sửa</span></a>
+
+                                    <a style="background: #8f4bab" href="/offers/create-sell/remove/{[{row._id}]}" class="btn btn-primary btn-delete">
+                                       <em class="fa fa-times"></em><span class="hidden-xs">Xóa</span>
+                                    </a>
+                              </div>
+                           </div>
+                        </div> -->
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ol>
+      </div>
+   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div ng-show="data.length > 0" class="pull-left" style="margin-bottom: 40px">
+                                             <pagination ng-show="data.length > 0" class="pull-right" total-items="totalItems" ng-model="currentPage" max-size="maxSize"  class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" previous-text="Trang trước" next-text="Trang sau" first-text="Đầu tiên" last-text="Cuối cùng" ></pagination>
+                                             
+                                          </div>
+                                          <div class="clearfix"></div>
+                                          <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" {[{data.length}]} ng-show="data.length == 0">Không có dữ liệu</h3>
+                                       </div>
+
+                                       
+                                    </div>
+                                    <h3 style="text-align: center;font-size: 16px; font-style: italic; color: #847e7e;" class="text-center" {[{data.length}]} ng-show="data.length == 0">Không tìm thấy quảng cáo nào</h3>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-lg-12 text-right"><a class="btn btn-primary" href="offers/create">Tạo quảng cáo</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                 <!--  -->
+                 <div id="dashboard4" class="tab-pane fade" ng-controller="CtrReffrallUser" >
+                    <div class="dashboard-escrow-content referrals-list-container">
+                        <div class="row">
+                           <div class="col-lg-12">
+                              <div class="row">
+                                 <div class="col-sm-8">
+                                    <div class="title-accent">
+                                       <h3><span>Danh sách giới thiệu</span></h3>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div>
+                           <div>
+                              <div class="content-wrapper">
+                                 <div>
+                                    <table class="table table-striped">
+                                       <thead>
+                                          <tr>
+                                             <th class="text-center col-sm-1">#</th>
+                                             <th class="text-center col-sm-4">Tên</th>
+                                             <th class="text-center col-sm-3">Trạng Thái</th>
+                                             <th class="text-center col-sm-4">Ngày</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody class="text-center hidden_js">
+                                          <tr class="referral-item" ng-repeat="row in data | slice:((currentPage-1)*itemsPerPage):((currentPage)*itemsPerPage)">
+                                             <td class="text-center">{[{$index + 1}]}</td>
+                                             <td class="text-center"><a href="/profile/{[{row.displayName}]}">{[{row.displayName}]}</a></td>
+                                             <td>
+                                             <span ng-if="row.level < 2" class="badge badge-warning">Chưa hoàn tất</span>
+                                             <span ng-if="row.level >= 2" class="badge badge-success">Hoàn tất</span>
+                                             </td>
+                                             <td>{[{row.signupDate | date:"MM/dd/yyyy h:mm a"}]}</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                 </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
