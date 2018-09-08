@@ -1,0 +1,53 @@
+<div class="content">
+   <div class="container-fluid">
+      <div class="row">
+         
+         <div class="col-md-12">
+         
+            <div class="card">
+
+               <div class="content">
+                  <div class="col-md-6 col-md-push-3">
+                     <h4 class="text-center">Cập nhập</h4>
+                      <form action="/qwertyuiop/admin/edit-bank/{{data._id}}" method="POST">
+                         <div class="form-group">
+                              <label for="fiat_amount" class="col-xs-12 control-label">TÊN TÀI KHOẢN</label>
+                              <div class="col-xs-12">
+                                 <input type="text" class="form-control" name="amount_horder" required="" value="{{data.amount_horder}}" >
+                              </div>
+                           </div>
+
+                           <div class="form-group">
+                              <label for="fiat_amount" class="col-xs-12 control-label">SỐ TÀI KHOẢN</label>
+                              <div class="col-xs-12">
+                                 <input type="text" class="form-control" name="amount_number" required="" value="{{data.amount_number}}">
+                              </div>
+                           </div>
+
+                           <div class="form-group">
+                              <label for="fiat_amount" class="col-xs-12 control-label">CHI NHÁNH</label>
+                              <div class="col-xs-12">
+                                 <input type="text" class="form-control" name="bank_address" required="" value="{{data.bank_address}}">
+                              </div>
+                           </div>
+
+                           <div class="form-group">
+                              <label for="fiat_amount" class="col-xs-12 control-label">TÊN NGÂN HÀNG</label>
+                              <div class="col-xs-12">
+                                 <input type="text" class="form-control" name="bank_name" required="" value="{{data.bank_name}}">
+                              </div>
+                           </div>
+                           <div class="form-group" style="margin-top: 20px; float: left;width: 100%">
+                              <div class="row text-center">
+                                 <button class="btn btn-success">Cập nhập</button>
+                              </div>
+                           </div>
+                      </form>
+                  </div>
+                  <div class="clearfix"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

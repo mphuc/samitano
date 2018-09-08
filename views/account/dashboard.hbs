@@ -26,7 +26,8 @@
             </div>
          </div>
          <div class="col-md-6" style="position: relative;">
-            <div class="ytp-cued-thumbnail-overlay-image" style="background-image: url(../images/banner.png);"></div>
+            <iframe class="ytp-cued-thumbnail-overlay-image" height="315" src="https://www.youtube.com/embed/_IRuo4BPgTI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+           <!--  <div  style="background-image: url(../images/banner.png);"></div> -->
          </div>
          <div class="clearfix"></div>
       </div>
@@ -59,9 +60,9 @@
                </div>
                
                {{#if_eq has_login true}}
-                  <div class="referral-link text-center"><strong class="text-danger referral-link">https://samitano.com/vn?ref={{user.displayName}}</strong>
-                  <a class="text-gray" href="https://twitter.com/intent/tweet?text=https://samitano.com/vn?ref={{user.displayName}}" target="_blank"><i class="fa fa-twitter" style="height: 18px; width: 16px; background: #8e8989; border-radius: 3px; font-size: 12px; color: #e4e4e4; line-height: 20px;"></i></a>
-                  <a class="text-gray" href="https://twitter.com/intent/tweet?text=https://samitano.com/vn?ref={{user.displayName}}" target="_blank"><i class="fa fa-facebook" style="height: 18px; width: 16px; background: #8e8989; border-radius: 3px; font-size: 12px; color: #e4e4e4; line-height: 20px;"></i></a>
+                  <div class="referral-link text-center"><strong class="text-danger referral-link">https://samitano.com/?ref={{user.displayName}}</strong>
+                  <a class="text-gray" href="https://twitter.com/intent/tweet?text=https://samitano.com/?ref={{user.displayName}}" target="_blank"><i class="fa fa-twitter" style="height: 18px; width: 16px; background: #8e8989; border-radius: 3px; font-size: 12px; color: #e4e4e4; line-height: 20px;"></i></a>
+                  <a class="text-gray" href="https://twitter.com/intent/tweet?text=https://samitano.com/?ref={{user.displayName}}" target="_blank"><i class="fa fa-facebook" style="height: 18px; width: 16px; background: #8e8989; border-radius: 3px; font-size: 12px; color: #e4e4e4; line-height: 20px;"></i></a>
                   </div>
                {{else}}
                   <div class="text-center"><a class="btn button_referall" href="/signin">Đăng nhập để lấy link giới thiệu</a></div>

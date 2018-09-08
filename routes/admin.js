@@ -4,6 +4,7 @@ const express = require('express');
 const AdminCtrl = require('../controllers/admin');
 const InvestCtrl = require('../controllers/admin/invest');
 const IcoAdminCtrl = require('../controllers/admin/ico');
+const BankAdminCtrl = require('../controllers/admin/bank');
 const WithdrawAdminCtrl = require('../controllers/admin/withdraw');
 const DepositAdminCtrl = require('../controllers/admin/deposit');
 const SupportAdminCtrl = require('../controllers/admin/support');
@@ -58,4 +59,11 @@ router.post('/admin/updateUser', auth, AdminCtrl.updateUser);
 router.get('/admin/invest/payment/:id', auth, InvestCtrl.SubmitInvest);
 
 router.get('/admin/market-history', auth, MarketHistory.ListMarketHistory);
+
+router.get('/admin/bank', auth, BankAdminCtrl.BankTempelte);
+router.get('/admin/new-bank', auth, BankAdminCtrl.NewBankTempelte);
+router.post('/admin/new-bank', auth, BankAdminCtrl.SubmitNewBankTempelte);
+router.get('/admin/remove-bank/:id', auth, BankAdminCtrl.RemoveBank);
+router.get('/admin/edit-bank/:id', auth, BankAdminCtrl.EditBankTemplete);
+router.post('/admin/edit-bank/:id', auth, BankAdminCtrl.SubmitEditBankTemplete);
 module.exports = router;

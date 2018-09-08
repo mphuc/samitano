@@ -414,8 +414,8 @@ var update_wallet = function(name ,wallet,user_id,callback){
 var update_balace = function(name , new_ast_balance,user_id,callback){
 
 	var obj = null;
-	if (name === 'BTC') obj =  { 'balance.bitcoin_wallet.available': parseFloat(new_ast_balance) }
-	if (name === 'BTG') obj =  {'balance.bitcoingold_wallet.available' : parseFloat(new_ast_balance)};
+	if (name === 'BTC') obj =  { 'balance.btc_wallet.available': parseFloat(new_ast_balance) }
+	if (name === 'VND') obj =  {'balance.vnd_wallet.available' : parseFloat(new_ast_balance)};
 	if (name === 'STC') obj = {'balance.stc_wallet.available': parseFloat(new_ast_balance)};
 	User.update({ _id :user_id }, { $set : obj }, function(err, UsersUpdate){
 		err ? callback(false) : callback(true);
@@ -475,14 +475,24 @@ function getbankvnd(user_id,displayName,amount,callback){
     		var date = new Date();
 			var date = date.getTime();
 			var fee = 6204;
-    		result.namebank = 'Vietcombank';
-    		result.numberbank = '0441000616599';
-    		result.horderbank = 'VO TIEN DAT';
-    		result.branchbank = 'Hồ Chí Minh';
-    		result.contentbank = "D"+date;
-    		newDepositObjvnd(user_id, displayName, result.namebank, result.numberbank ,result.horderbank,result.branchbank,result.contentbank,amount).save(( err, DepositStored)=>{
-				callback(true);
+
+			Bank.find({},function(err,result_bank){
+				var count_bank = result_bank.length;
+				var ramdom = Math.floor(Math.random() * count_bank);
+				Bank.find({},function(errss,bankss){
+					result.namebank = bankss[0].bank_name;
+		    		result.numberbank = bankss[0].amount_number;
+		    		result.horderbank = bankss[0].amount_horder;
+		    		result.branchbank = bankss[0].bank_address;
+		    		result.contentbank = "D"+date;
+		    		newDepositObjvnd(user_id, displayName, result.namebank, result.numberbank ,result.horderbank,result.branchbank,result.contentbank,amount).save(( err, DepositStored)=>{
+						callback(true);
+					})
+				}).limit(1).skip(ramdom)
 			})
+			/*'0441000616599';
+    		result.horderbank = 'VO TIEN DAT';
+    		result.branchbank = 'Hồ Chí Minh';*/
     	}
     	else
     	{

@@ -7,7 +7,8 @@ const Schema = mongoose.Schema;
 const Bankchema = new Schema({
 	amount_number : String,
 	amount_horder : String,
-	bank_name : String
+	bank_name : String,
+	bank_address : String
 	
 });
 
